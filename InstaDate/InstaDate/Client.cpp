@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Client.h"
+#include "Tokenizer.h"
 
 
 Client::Client(void)
@@ -50,8 +51,12 @@ int Client::getNumInterest()
 std::vector<std::string>  Client::getListInterest()
 {
 	std::vector<std::string> strStack;
-	//split strings up by commas and remove period at end
+	//remove period at end of string
+	std::string workingStr;
+	workingStr.assign(listInterest, 0, listInterest.size() - 1);
+	//split strings up by commas 
 	//push substrings to stack
+	Tokenizer::splitIt(workingStr, strStack, ",");
 	return strStack;
 }
 std::string Client::getMatch()
