@@ -7,7 +7,6 @@ Filename: fileHandler.h
 Requirements: None
 
 Includes: 
-#include "StdAfx.h"
 
 Course: CISS-350A
 

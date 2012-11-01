@@ -1,3 +1,25 @@
+/* ***************************************************************************
+
+Programmer: Todd Pickell
+
+Filename: Client.cpp
+
+Requirements: None
+
+Includes: 
+#include "stdafx.h"
+#include "Client.h"
+#include "Tokenizer.h"
+
+Course: CISS-350A
+
+Date: 11-1-12
+
+Assignment: Week 2
+
+Description: implementation of Client ADT.
+
+************************************************************************* */
 #include "stdafx.h"
 #include "Client.h"
 #include "Tokenizer.h"
@@ -30,6 +52,7 @@ Client::Client(char charIN, std::string str1, std::string str2, int intIN, std::
 Client::~Client(void)
 {
 }
+
 
 /* getters */
 char Client::getSex()
@@ -64,19 +87,6 @@ std::string Client::getMatch()
 	return match;
 }
 
-bool Client::matched()
-{
-	return (match == " ") ? false : true;
-}
-
-RelationType Client::ComparedTo(Client otherClient) const 
-{
-	if (numInterest < otherClient.numInterest)
-    return LESS;
-  else if (numInterest > otherClient.numInterest)
-    return GREATER;
-  else return EQUAL;
-}
 
 /* setters */
 void Client::setSex(char charIN)
@@ -102,4 +112,20 @@ void Client::setListInterest(std::string strIN)
 void Client::setMatch(std::string strIN)
 {
 	match = strIN;
+}
+
+
+/* instance methods */
+bool Client::matched()
+{
+	return (match == " ") ? false : true;
+}
+
+RelationType Client::ComparedTo(Client otherClient) const 
+{
+	if (numInterest < otherClient.numInterest)
+    return LESS;
+  else if (numInterest > otherClient.numInterest)
+    return GREATER;
+  else return EQUAL;
 }

@@ -1,3 +1,25 @@
+/* ***************************************************************************
+
+Programmer: Todd Pickell
+
+Filename: UnsortedList.cpp
+
+Requirements: None
+
+Includes: 
+#include "stdafx.h"
+#include "Client.h"
+#include "UnsortedList.h"
+
+Course: CISS-350A
+
+Date: 11-1-12
+
+Assignment: Week 2
+
+Description: this is the implementation file for the unsorted list.
+
+************************************************************************* */
 #include "stdafx.h"
 #include "Client.h"
 #include "UnsortedList.h"
@@ -50,13 +72,13 @@ void UnsortedList::MakeEmpty()
   }
   length = 0;
 }
-void UnsortedList::PutItem(Client item)
+void UnsortedList::PutItem(Client clientIN)
 // item is in the list; length has been incremented.
 {
   Node* location;			// Declare a pointer to a node
 
   location = new Node;		// Get a new node 
-  location->client = item;		// Store the item in the node
+  location->client = clientIN;		// Store the item in the node
   location->next = listData;	// Store address of first node 
 						//   in next field of new node
   listData = location;		// Store address of new node into
@@ -64,7 +86,7 @@ void UnsortedList::PutItem(Client item)
   length++;				// Increment length of the list
 }
 
-Client UnsortedList::GetItem(Client& item, bool& found)
+Client UnsortedList::GetItem(Client& clientIN, bool& found)
 // Pre:  Key member(s) of item is initialized.
 // Post: If found, item's key matches an element's key in the 
 //       list and a copy of that element has been stored in item;
@@ -79,21 +101,21 @@ Client UnsortedList::GetItem(Client& item, bool& found)
 
   while (moreToSearch && !found) 
   {
-    switch (item.ComparedTo(location->client))
+    switch (clientIN.ComparedTo(location->client))
     {
       case LESS    : 
       case GREATER : location = location->next;
                      moreToSearch = (location != NULL);
                      break;
       case EQUAL   : found = true;
-                     item = location->client;
+                     clientIN = location->client;
                      break;
     }
   }
-  return item;
+  return clientIN;
 }
 
- void UnsortedList::DeleteItem(Client item)
+ void UnsortedList::DeleteItem(Client clientIN)
 // Pre:  item's key has been initialized.
 //       An element in the list has a key that matches item's.
 // Post: No element in the list has a key that matches item's.
@@ -102,14 +124,14 @@ Client UnsortedList::GetItem(Client& item, bool& found)
   Node* tempLocation;
 
   // Locate node to be deleted.
-  if (item.ComparedTo(listData->client) == EQUAL)
+  if (clientIN.ComparedTo(listData->client) == EQUAL)
   {
     tempLocation = location;
     listData = listData->next;		// Delete first node.
   }
   else
   {
-    while (item.ComparedTo((location->next)->client) != EQUAL)
+    while (clientIN.ComparedTo((location->next)->client) != EQUAL)
       location = location->next;
 
     // Delete node at location->next
@@ -131,13 +153,13 @@ Client UnsortedList::GetNextItem()
 //        When the end of the list is reached, currentPos
 //        is reset to begin again.
 {
-  Client item;
+  Client client;
   if (currentPos == NULL)
     currentPos = listData;
   else
     currentPos = currentPos->next;
-  item = currentPos->client;
-  return item;
+  client = currentPos->client;
+  return client;
 }
 
 UnsortedList::~UnsortedList()

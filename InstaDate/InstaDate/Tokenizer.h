@@ -1,3 +1,27 @@
+/* ***************************************************************************
+
+Programmer: Todd Pickell
+
+Filename: Tokenizer.h
+
+Requirements: None
+
+Includes: 
+#include "StdAfx.h"
+
+Course: CISS-350A
+
+Date: 11-1-12
+
+Assignment: Week 2
+
+Description: this file contains a function to split a string into substrings by a token, 
+I tried to model this after StringTokenizer in Java that I am familar with
+except without the functionality of the enumerable implementation I couldn't 
+figure out how to include hasMoreTokens() && nextToken() so it just crams the results into a vector.
+
+************************************************************************* */
+
 #pragma once
 #include "stdafx.h"
 

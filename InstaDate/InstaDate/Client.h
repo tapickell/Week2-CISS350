@@ -1,3 +1,22 @@
+/* ***************************************************************************
+
+Programmer: Todd Pickell
+
+Filename: Client.h
+
+Requirements: None
+
+Includes: 
+
+Course: CISS-350A
+
+Date: 11-1-12
+
+Assignment: Week 2
+
+Description: header for Client ADT.
+
+************************************************************************* */
 #pragma once
 
 const int MAX_ITEMS = 5;
@@ -6,9 +25,11 @@ enum RelationType  {LESS, GREATER, EQUAL};
 class Client
 {
 public:
+	/* constructors */
 	Client(void);
 	Client(char, std::string, std::string, int, std::string);
 	Client(char, std::string, std::string, int, std::string, std::string);
+	/* destructor */
 	~Client(void);
 
 	/* getters */
@@ -27,8 +48,11 @@ public:
 	void setListInterest(std::string);
 	void setMatch(std::string);
 
+	/* instance methods */
 	bool matched();
 	RelationType ComparedTo(Client) const;
+
+
 private:
 	char sex;
 	std::string name;

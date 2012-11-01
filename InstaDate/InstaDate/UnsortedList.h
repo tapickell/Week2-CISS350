@@ -1,3 +1,23 @@
+/* ***************************************************************************
+
+Programmer: Todd Pickell
+
+Filename: UnsortedList.h
+
+Requirements: None
+
+Includes: 
+#include "Client.h" 
+
+Course: CISS-350A
+
+Date: 11-1-12
+
+Assignment: Week 2
+
+Description: this is the header file for the unsorted list.
+
+************************************************************************* */
 #pragma once
 #include "Client.h" 
 
