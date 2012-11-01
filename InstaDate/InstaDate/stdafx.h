@@ -12,7 +12,9 @@
 #include <tchar.h>
 #include <string>
 #include <iostream>
+#include <fstream>
 #include <algorithm>
+#include <sstream>
 #include <vector>
 
 
