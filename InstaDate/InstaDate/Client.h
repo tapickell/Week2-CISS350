@@ -1,4 +1,8 @@
 #pragma once
+
+const int MAX_ITEMS = 5;
+enum RelationType  {LESS, GREATER, EQUAL};
+
 class Client
 {
 public:
@@ -23,6 +27,8 @@ public:
 	void setListInterest(std::string);
 	void setMatch(std::string);
 
+	bool matched();
+	RelationType ComparedTo(Client) const;
 private:
 	char sex;
 	std::string name;

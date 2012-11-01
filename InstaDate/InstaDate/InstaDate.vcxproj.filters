@@ -33,6 +33,9 @@
     <ClInclude Include="fileHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UnsortedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -45,6 +48,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="fileHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UnsortedList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

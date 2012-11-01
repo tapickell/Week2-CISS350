@@ -1,19 +1,24 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.h" caret="112" fromTop="5" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Tokenizer.h" caret="64" fromTop="3" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.cpp" caret="1141" fromTop="16" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:fileHandler.h" caret="215" fromTop="13" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:fileHandler.cpp" caret="278" fromTop="16" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:stdafx.h" caret="368" fromTop="16" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:InstaDate.cpp" caret="231" fromTop="10" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:InstaDate.cpp" caret="705" fromTop="35" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.h" caret="674" fromTop="29" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.h" caret="2164" fromTop="64" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.cpp" caret="1117" fromTop="58" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.cpp" caret="1511" fromTop="41" />
   </RecentFiles>
   <RecentEdits>
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Tokenizer.h" caret="64" fromTop="3" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.cpp" caret="1141" fromTop="16" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:InstaDate.cpp" caret="457" fromTop="10" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:fileHandler.h" caret="225" fromTop="13" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:fileHandler.cpp" caret="278" fromTop="16" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:stdafx.h" caret="368" fromTop="16" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:InstaDate.cpp" caret="705" fromTop="35" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.h" caret="707" fromTop="30" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.h" caret="2198" fromTop="40" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.cpp" caret="3383" fromTop="46" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.cpp" caret="1441" fromTop="39" />
   </RecentEdits>
 </RecentFiles>

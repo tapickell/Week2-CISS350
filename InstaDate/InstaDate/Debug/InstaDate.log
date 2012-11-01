@@ -1,11 +1,9 @@
-﻿Build started 11/1/2012 1:10:22 PM.
+﻿Build started 11/1/2012 2:51:19 PM.
      1>Project "D:\tpickell\Documents\GitHub\Week2-CISS350\InstaDate\InstaDate\InstaDate.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\InstaDate.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
-         stdafx.cpp
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\InstaDate.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Client.cpp fileHandler.cpp InstaDate.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\InstaDate.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Client.cpp InstaDate.cpp UnsortedList.cpp
+         UnsortedList.cpp
          InstaDate.cpp
-         fileHandler.cpp
          Client.cpp
          Generating Code...
        Link:
@@ -13,9 +11,10 @@
          Debug\fileHandler.obj
          Debug\InstaDate.obj
          Debug\stdafx.obj
+         Debug\UnsortedList.obj
          InstaDate.vcxproj -> D:\tpickell\Documents\GitHub\Week2-CISS350\InstaDate\Debug\InstaDate.exe
      1>Done Building Project "D:\tpickell\Documents\GitHub\Week2-CISS350\InstaDate\InstaDate\InstaDate.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.01
+Time Elapsed 00:00:05.83

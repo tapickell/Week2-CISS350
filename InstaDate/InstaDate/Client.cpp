@@ -64,6 +64,20 @@ std::string Client::getMatch()
 	return match;
 }
 
+bool Client::matched()
+{
+	return (match == " ") ? false : true;
+}
+
+RelationType Client::ComparedTo(Client otherClient) const 
+{
+	if (numInterest < otherClient.numInterest)
+    return LESS;
+  else if (numInterest > otherClient.numInterest)
+    return GREATER;
+  else return EQUAL;
+}
+
 /* setters */
 void Client::setSex(char charIN)
 {

@@ -11,6 +11,10 @@
 
 using namespace std;
 
+void createNewClient(vector<string>);
+void unmatchClient();
+void printList();
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 
@@ -23,3 +27,22 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
+void createNewClient(vector<string>)
+{
+	//create client object
+	//check for match with opposite sex list
+	//add match to client object
+	//update clients found match to show matching back to client
+	//add client to appropriate list
+	//print message if match or not
+}
+
+void unmatchClient()
+{
+
+}
+
+void printList()
+{
+
+}
