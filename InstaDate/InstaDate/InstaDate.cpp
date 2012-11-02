@@ -27,11 +27,12 @@ Description: main program file
 #include "fileHandler.h"
 #include "UnsortedList.h"
 
-#define nc = "NEWCLIENT";
-#define um = "UNMATCH";
-#define pm = "PRINTMATCH";
-#define pf = "PRINTFREE";
-#define qt = "QUIT";
+
+#define nc = ;
+#define um = ;
+#define pm = ;
+#define pf = ;
+#define qt = ;
 
 using namespace std;
 
@@ -44,19 +45,49 @@ int _tmain(int argc, _TCHAR* argv[])
 	UnsortedList males;
 	UnsortedList females;
 
+	cout << "Welcome to the InstaDate computer dating system" << endl;
+	
+	bool done = false;
+	while (!done)
+	{
+		string str;
+		vector<string> vecStr;
+		//get input from user
+		cout << "Enter command: " << endl;
+		getline(cin, str);
+		cout << endl;
+		//Tokenizer::splitIt(str, vecStr, " "); //split by white space !May Not Work Well!
+		//pass thru switch statement
 
+		if (vecStr[0] == "NEWCLIENT")
+		{
+			createNewClient(vecStr); // may have to pass lists in as well
+		} else if (vecStr[0] == "UNMATCH")
+		{
 
+		} else if (vecStr[0] == "PRINTMATCH")
+		{
 
-	cout << endl << "Hello World!" << endl;
-	system("pause");
+		} else if (vecStr[0] == "PRINTFREE")
+		{
+
+		} else if (vecStr[0] == "QUIT")
+		{
+			done = true; //exit program
+		} else {
+			cout << "Error Unkown Command!" << endl; //default
+		}
+	}
+
+	std::system("pause");
 	return 0;
 }
 
 void createNewClient(vector<string> stringsIN)
 {
 	//create client object
-	string strChar = stringsIN[0];
-	Client newClient = Client(strChar[0], stringsIN[1], stringsIN[2], atoi(stringsIN[3].c_str()), stringsIN[4]);
+	string strChar = stringsIN[1];
+	Client newClient = Client(strChar[0], stringsIN[2], stringsIN[3], atoi(stringsIN[4].c_str()), stringsIN[5]);
 	//check for match with opposite sex list
 	//add match to client object
 	//update clients found match to show matching back to client
@@ -81,3 +112,8 @@ void printList(UnsortedList &listIn)
 {
 
 }
+
+//Client findClientByName(UnorderedList & searchList, string nameIn)
+//{
+
+//}

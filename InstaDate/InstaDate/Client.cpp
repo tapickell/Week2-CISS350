@@ -22,7 +22,7 @@ Description: implementation of Client ADT.
 ************************************************************************* */
 #include "stdafx.h"
 #include "Client.h"
-#include "Tokenizer.h"
+
 
 
 Client::Client(void)
@@ -75,11 +75,12 @@ std::vector<std::string>  Client::getListInterest()
 {
 	std::vector<std::string> strStack;
 	//remove period at end of string
-	std::string workingStr;
-	workingStr.assign(listInterest, 0, listInterest.size() - 1);
+	std::string workingStr = " ";
+	//workingStr.assign(listInterest, 0, listInterest.size() - 1);
 	//split strings up by commas 
 	//push substrings to stack
-	Tokenizer::splitIt(workingStr, strStack, ",");
+	std::string delim = ",";
+	splitIt(workingStr, strStack, delim);
 	return strStack;
 }
 std::string Client::getMatch()
@@ -128,4 +129,35 @@ RelationType Client::ComparedTo(Client otherClient) const
   else if (numInterest > otherClient.numInterest)
     return GREATER;
   else return EQUAL;
+}
+
+void splitIt(const std::string &str, std::vector<std::string> &strStack, const std::string &token)
+{
+	std::string::size_type i, j, len, n;
+
+	len = str.size();
+	n = token.size();
+    i = 0; 
+	j = 0;
+
+    while ( i+n <= len )
+    {
+		//find begining of next token and see if that matches whole token
+        if (str[i] == token[0] && str.substr(i, n) == token)
+        {
+			//add substring before token to stack
+            strStack.push_back(str.substr( j, i - j ));
+			//after split reset trackers to begining of next word
+            i = j = i + n;
+        }
+        else
+        {
+			//move to next char if token not found
+            i++;
+        }
+    }
+
+	//grab last substring and add it to stack
+    strStack.push_back(str.substr( j, len-j ));
+
 }
