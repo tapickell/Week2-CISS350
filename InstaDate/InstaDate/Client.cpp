@@ -123,11 +123,22 @@ void Client::setMatch(std::string strIN)
 
 
 /* instance methods */
+/*
+	function:
+	pre:
+	post:
+*/
 bool Client::matched()
 {
 	return (match == " ") ? false : true;
 }
 
+
+/*
+	function:
+	pre:
+	post:
+*/
 //need to set to match on the name
 RelationType Client::ComparedTo(Client otherClient) const 
 {
@@ -139,6 +150,12 @@ RelationType Client::ComparedTo(Client otherClient) const
 	}	
 }
 
+
+/*
+	function:
+	pre:
+	post:
+*/
 //pass in the string to split, the vector to store the substrings in and the token to split with
 std::vector<std::string> Client::split_by_token(std::string myStr, std::string myDelim)
 {

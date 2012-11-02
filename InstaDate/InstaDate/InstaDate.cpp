@@ -32,6 +32,7 @@ Description: main program file
 
 using namespace std;
 
+// function declarations
 void createNewClient(vector<string>, UnsortedList&, UnsortedList&);
 void unmatchClient(Client&, UnsortedList&);
 Client findClientByName(string, UnsortedList&);
@@ -40,9 +41,10 @@ void printMatchList(UnsortedList&);
 void printFreeList(UnsortedList&);
 vector<string> split_by_whitespace(string);
 
+// **** main ****
 int _tmain(int argc, _TCHAR* argv[])
 {
-	//create lists
+	//create lists for clients
 	UnsortedList males;
 	UnsortedList females;
 	//put contents of clients file into lists
@@ -56,7 +58,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		createNewClient(clientString, males, females);
 	}
 
-	//main loop
+	// **** main loop ****
 	bool done = false;
 	while (!done)
 	{
@@ -142,20 +144,45 @@ int _tmain(int argc, _TCHAR* argv[])
 	}//end main while loop
 
 
-	cout << endl << "Thank you for using InstaDate" << endl;
+	cout << endl << "Thank you for using InstaDate" << endl; // exit message
 	system("pause");
 	return 0;
 }
 
+
+/*
+	function:
+	pre:
+	post:
+*/
 void createNewClient(vector<string> stringsIN, UnsortedList &maleList, UnsortedList &femaleList)
 {
 	string sexCharM = "M";
 	string sexCharF = "F";
 	//create client object
 	string strChar = stringsIN[0]; //to go to char easily
-	if (stringsIN.size() > 5) // client string allready has match in it (came from file)
+	if (stringsIN.size() > 5 && stringsIN[5] != " ") // client string allready has match in it (came from file)
 	{
-		Client newClientWithMatch = Client(strChar[0], stringsIN[1], stringsIN[2], atoi(stringsIN[3].c_str()), stringsIN[4], stringsIN[5]);
+		try
+		{
+			Client newClientWithMatch = Client(strChar[0], stringsIN[1], stringsIN[2], atoi(stringsIN[3].c_str()), stringsIN[4], stringsIN[5]);
+			if (newClientWithMatch.getSex() == sexCharM[0])// new client is male
+			{
+				maleList.PutItem(newClientWithMatch);
+
+			} else if (newClientWithMatch.getSex() == sexCharF[0])// new client is female
+			{
+				femaleList.PutItem(newClientWithMatch);
+
+			} else
+			{
+				throw PatError();
+			}
+		}
+		catch (PatError &e)
+		{
+			cerr << endl << "ERROR: " << e.what() << endl;
+		}
 	} else //new client from prompt without match
 	{
 		Client newClient = Client(strChar[0], stringsIN[1], stringsIN[2], atoi(stringsIN[3].c_str()), stringsIN[4]);
@@ -163,7 +190,7 @@ void createNewClient(vector<string> stringsIN, UnsortedList &maleList, UnsortedL
 		vector<string> clientInterests = newClient.getListInterest();
 		try
 		{
-			if (newClient.getSex() == sexCharM[0])
+			if (newClient.getSex() == sexCharM[0])// new client is male
 			{
 				bool found = false;
 				UnsortedList unmatchedFemales = grepListForMatched(false, femaleList); // get only unmatched females
@@ -197,7 +224,7 @@ void createNewClient(vector<string> stringsIN, UnsortedList &maleList, UnsortedL
 				//add client to appropriate list
 				maleList.PutItem(newClient);
 
-			} else if (newClient.getSex() == sexCharF[0])
+			} else if (newClient.getSex() == sexCharF[0])// new client is female
 			{
 				//add client to appropriate list
 				UnsortedList unmatchedMales = grepListForMatched(false, maleList); // get only unmatched males
@@ -243,6 +270,7 @@ void createNewClient(vector<string> stringsIN, UnsortedList &maleList, UnsortedL
 	}
 }
 
+
 /* 
 	function: unmatch a client from current match
 	pre: client has been found using findClientByName() 
@@ -270,6 +298,12 @@ void unmatchClient(Client &clientIN, UnsortedList &theList)
 	}
 }
 
+
+/*
+	function:
+	pre:
+	post:
+*/
 Client findClientByName(string nameIn, UnsortedList &theList)
 {
 	Client searchFor = Client(nameIn);
@@ -284,6 +318,7 @@ Client findClientByName(string nameIn, UnsortedList &theList)
 	//return Client object once found
 	return found;
 }
+
 
 /*
 	function: to search thru a list finding clients that are matched || notMatched
@@ -316,6 +351,12 @@ UnsortedList grepListForMatched(bool matched, UnsortedList &theList)
 	return newList;
 }
 
+
+/*
+	function:
+	pre:
+	post:
+*/
 void printMatchList(UnsortedList &listIn)
 {
 	cout << endl << "Matched Pairs" << endl;
@@ -327,6 +368,12 @@ void printMatchList(UnsortedList &listIn)
 	}
 }
 
+
+/*
+	function:
+	pre:
+	post:
+*/
 void printFreeList(UnsortedList &listIn)
 {
 	cout << endl << "Free Clients" << endl;
@@ -338,6 +385,12 @@ void printFreeList(UnsortedList &listIn)
 	}
 }
 
+
+/*
+	function:
+	pre:
+	post:
+*/
 vector<string> split_by_whitespace(string myStr)
 {
 	size_t i, j;
@@ -366,4 +419,10 @@ vector<string> split_by_whitespace(string myStr)
 	return result;
 }
 
+
+/*
+	function:
+	pre:
+	post:
+*/
 //spitOUT() method that outputs strings to cout and to fileHandler
