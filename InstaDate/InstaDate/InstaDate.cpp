@@ -35,7 +35,9 @@ using namespace std;
 void createNewClient(vector<string>);
 void unmatchClient(Client&, UnsortedList&);
 Client findClientByName(string, UnsortedList&);
-void printList(UnsortedList&);
+UnsortedList grepListForMatched(bool , UnsortedList&);
+void printMatchList(UnsortedList&);
+void printFreeList(UnsortedList&);
 vector<string> split_by_whitespace(string);
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -108,11 +110,14 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		} else if (vString[0] == "PRINTMATCH")
 		{
-			//print clients that are matched
+			//print clients that are matched ( can do one or other doesnt matter )
+			printMatchList(grepListForMatched(true, males));
 
 		} else if (vString[0] == "PRINTFREE")
 		{
 			//print clients without matches
+			printFreeList(grepListForMatched(false, males));
+			printFreeList(grepListForMatched(false, females));
 
 		} else if (vString[0] == "QUIT")
 		{
@@ -202,13 +207,35 @@ Client findClientByName(string nameIn, UnsortedList &theList)
 UnsortedList grepListForMatched(bool matched, UnsortedList &theList)
 {
 	UnsortedList newList;
-	//getLength() on list
+	
+	//iterate thru list to check each client
+	for (int i = 0; i < theList.GetLength(); i++)
+	{
+		//get next item (will cycle back to first at end of list)
+		Client nextOne = theList.GetNextItem();
+		//check if matched then add or not to list
+		if (matched)
+		{
+			if (nextOne.matched())
+				newList.PutItem(nextOne);
+		} else
+		{
+			if (!nextOne.matched())
+				newList.PutItem(nextOne);
+		}
+		
+	}
 	return newList;
 }
 
-void printList(UnsortedList &listIn)
+void printMatchList(UnsortedList &listIn)
 {
-	//print out list passed in
+	//print out list passed in using matched
+}
+
+void printFreeList(UnsortedList &listIn)
+{
+	//print out list passed in using free format
 }
 
 vector<string> split_by_whitespace(string myStr)
