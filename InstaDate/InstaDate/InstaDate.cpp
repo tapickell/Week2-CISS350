@@ -38,11 +38,13 @@ using namespace std;
 
 void createNewClient(vector<string>);
 void unmatchClient(Client&);
+Client findClientByName(string, UnsortedList&);
 void printList(UnsortedList&);
-vector<string> split_by_whitespace(string myStr);
+vector<string> split_by_whitespace(string);
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	//create lists
 	UnsortedList males;
 	UnsortedList females;
 
@@ -61,15 +63,21 @@ int _tmain(int argc, _TCHAR* argv[])
 		if (vString[0] == "NEWCLIENT")
 		{
 			//create new client
+			createNewClient(vString);
+
 		} else if (vString[0] == "UNMATCH")
 		{
+			//find client by name
 			//unmatch client
+
 		} else if (vString[0] == "PRINTMATCH")
 		{
 			//print clients that are matched
+
 		} else if (vString[0] == "PRINTFREE")
 		{
 			//print clients without matches
+
 		} else if (vString[0] == "QUIT")
 		{
 			//exit program
@@ -107,9 +115,19 @@ void createNewClient(vector<string> stringsIN)
 
 void unmatchClient(Client &clientIN)
 {
+	//find matched client by name
 	clientIN.setMatch(" ");
-	//find clients name in opposite sex list under match
 	//matchedClient.setMatch(" ");
+}
+
+Client findClientByName(string nameIn, UnsortedList &theList)
+{
+	Client searchFor = Client(nameIn);
+	//search list for client with matching name
+	bool isFound;
+	Client found = theList.GetItem(searchFor, isFound);
+	//return Client object once found
+	return found;
 }
 
 void printList(UnsortedList &listIn)

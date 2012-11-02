@@ -28,6 +28,11 @@ Client::Client(void)
 {
 }
 
+Client::Client(std::string nameIn)
+{
+	setName(nameIn);
+}
+
 Client::Client(char charIN, std::string str1, std::string str2, int intIN, std::string str3)
 {
 	setSex(charIN);
@@ -118,16 +123,14 @@ bool Client::matched()
 	return (match == " ") ? false : true;
 }
 
+//need to set to match on the name
 RelationType Client::ComparedTo(Client otherClient) const 
 {
-	if (numInterest < otherClient.numInterest)
+	if (name == otherClient.name)
 	{
-		return LESS;
-	} else if (numInterest > otherClient.numInterest)
-	{
-		return GREATER;
+		return EQUAL;
 	} else { 
-  		return EQUAL;
+		return LESS;
 	}	
 }
 

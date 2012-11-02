@@ -27,6 +27,7 @@ class Client
 public:
 	/* constructors */
 	Client(void);
+	Client(std::string nameIn);
 	Client(char, std::string, std::string, int, std::string);
 	Client(char, std::string, std::string, int, std::string, std::string);
 	/* destructor */
