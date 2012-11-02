@@ -37,7 +37,7 @@ Description: main program file
 using namespace std;
 
 void createNewClient(vector<string>);
-void unmatchClient(Client&);
+void unmatchClient(Client&, UnsortedList&);
 Client findClientByName(string, UnsortedList&);
 void printList(UnsortedList&);
 vector<string> split_by_whitespace(string);
@@ -68,6 +68,15 @@ int _tmain(int argc, _TCHAR* argv[])
 		} else if (vString[0] == "UNMATCH")
 		{
 			//find client by name
+			Client foundClient = findClientByName(vString[1], males);
+			if (foundClient.getName() == "NOTFOUND")
+			{
+				foundClient = findClientByName(vString[1], females);
+				if (foundClient.getName() == "NOTFOUND")
+				{
+					cout << endl << "ERROR: Client not found!" << endl;
+				}
+			}
 			//unmatch client
 
 		} else if (vString[0] == "PRINTMATCH")
@@ -113,11 +122,31 @@ void createNewClient(vector<string> stringsIN)
 	//print message if match or not
 }
 
-void unmatchClient(Client &clientIN)
+/* 
+	function: unmatch a client from current match
+	pre: client has been found using findClientByName() 
+		 checked sex to pass in correct list
+		 client has a match and match can be found
+	post: both client and matched client will have match set to " "
+*/
+void unmatchClient(Client &clientIN, UnsortedList &theList)
 {
-	//find matched client by name
-	clientIN.setMatch(" ");
-	//matchedClient.setMatch(" ");
+	if (clientIN.getMatch() != " ")
+	{
+		//find matched client by name
+		Client matchedClient = findClientByName(clientIN.getMatch(), theList);
+		
+		if (matchedClient.getName() != "NOTFOUND")
+		{
+			//clear matches for both clients
+			clientIN.setMatch(" ");
+			matchedClient.setMatch(" ");
+		} else {
+			cout << endl << "ERROR: Matched client not found!" << endl;
+		}
+	} else {
+		cout << endl << "ERROR: Client is not matched!" << endl;
+	}
 }
 
 Client findClientByName(string nameIn, UnsortedList &theList)
@@ -126,13 +155,18 @@ Client findClientByName(string nameIn, UnsortedList &theList)
 	//search list for client with matching name
 	bool isFound;
 	Client found = theList.GetItem(searchFor, isFound);
+	if (!isFound)
+	{
+		found = Client(-1);
+		cout << endl << "ERROR: Client Not Found!" << endl;
+	}
 	//return Client object once found
 	return found;
 }
 
 void printList(UnsortedList &listIn)
 {
-
+	//print out list passed in
 }
 
 vector<string> split_by_whitespace(string myStr)

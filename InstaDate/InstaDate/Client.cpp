@@ -28,6 +28,11 @@ Client::Client(void)
 {
 }
 
+Client::Client(int intIN)
+{
+	setName("NOTFOUND");
+}
+
 Client::Client(std::string nameIn)
 {
 	setName(nameIn);
