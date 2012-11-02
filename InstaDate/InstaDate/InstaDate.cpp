@@ -51,14 +51,34 @@ int _tmain(int argc, _TCHAR* argv[])
 	while (!done)
 	{
 		cout << "Instadate computer dating system" << endl;
+		string cinString;
 		//get input from user
 		cout << endl << "Enter a command: " << endl;
-		string cinString;
-		vector<string> vString;
 		getline(cin, cinString);
 		//split string to vector
-		
+		vector<string> vString = split_by_whitespace(cinString);
 		//pass choice to switch
+		if (vString[0] == "NEWCLIENT")
+		{
+			//create new client
+		} else if (vString[0] == "UNMATCH")
+		{
+			//unmatch client
+		} else if (vString[0] == "PRINTMATCH")
+		{
+			//print clients that are matched
+		} else if (vString[0] == "PRINTFREE")
+		{
+			//print clients without matches
+		} else if (vString[0] == "QUIT")
+		{
+			//exit program
+			done = true;
+		} else
+		{
+			//default
+			cout << endl << "ERROR: Unknown Command!" << endl;
+		}
 	}
 
 
