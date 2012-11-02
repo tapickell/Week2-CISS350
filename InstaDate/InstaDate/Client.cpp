@@ -124,8 +124,12 @@ bool Client::matched()
 RelationType Client::ComparedTo(Client otherClient) const 
 {
 	if (numInterest < otherClient.numInterest)
+	{
     return LESS;
-  else if (numInterest > otherClient.numInterest)
+  } else if (numInterest > otherClient.numInterest)
+  {
     return GREATER;
-  else return EQUAL;
+  } else { 
+  	return EQUAL;
+  }	
 }

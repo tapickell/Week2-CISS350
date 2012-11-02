@@ -44,7 +44,15 @@ int _tmain(int argc, _TCHAR* argv[])
 	UnsortedList males;
 	UnsortedList females;
 
-
+	//main loop
+	bool done = false;
+	while (!done)
+	{
+		cout << "Instadate computer dating system" << endl;
+		//get input from user
+		cout << endl << "Enter a command: " << endl;
+		//pass choice to switch
+	}
 
 
 	cout << endl << "Hello World!" << endl;
@@ -55,8 +63,8 @@ int _tmain(int argc, _TCHAR* argv[])
 void createNewClient(vector<string> stringsIN)
 {
 	//create client object
-	string strChar = stringsIN[0];
-	Client newClient = Client(strChar[0], stringsIN[1], stringsIN[2], atoi(stringsIN[3].c_str()), stringsIN[4]);
+	string strChar = stringsIN[1];
+	Client newClient = Client(strChar[0], stringsIN[2], stringsIN[3], atoi(stringsIN[4].c_str()), stringsIN[5]);
 	//check for match with opposite sex list
 	//add match to client object
 	//update clients found match to show matching back to client

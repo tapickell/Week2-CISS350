@@ -16,7 +16,7 @@ Date: 11-1-12
 Assignment: Week 2
 
 Description: this file contains a function to split a string into substrings by a token, 
-I tried to model this after StringTokenizer in Java that I am familar with
+I tried to model this after StringTokenizer in Java that I am familiar with
 except without the functionality of the enumerable implementation I couldn't 
 figure out how to include hasMoreTokens() && nextToken() so it just crams the results into a vector.
 
@@ -30,7 +30,7 @@ figure out how to include hasMoreTokens() && nextToken() so it just crams the re
 
 namespace Tokenizer
 {
-	//pass in the sring to split, the vector to store the substrings in and the token to split with
+	//pass in the string to split, the vector to store the substrings in and the token to split with
 	void splitIt(const std::string &str, std::vector<std::string> &strStack, const std::string &token)
     {
         std::string::size_type i, j, len, n;
@@ -42,12 +42,12 @@ namespace Tokenizer
 
         while ( i+n <= len )
         {
-			//find begining of next token and see if that matches whole token
+			//find beginning of next token and see if that matches whole token
             if (str[i] == token[0] && str.substr(i, n) == token)
             {
 				//add substring before token to stack
                 strStack.push_back(str.substr( j, i - j ));
-				//after split reset trackers to begining of next word
+				//after split reset trackers to beginning of next word
                 i = j = i + n;
             }
             else
