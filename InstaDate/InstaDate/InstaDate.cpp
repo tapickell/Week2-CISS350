@@ -60,12 +60,12 @@ int _tmain(int argc, _TCHAR* argv[])
 		vector<string> vString = split_by_whitespace(cinString);
 
 		//pass choice to switch
-		if (vString[0] == "NEWCLIENT")
+		if (vString[0] == "NEWCLIENT")  /**** New Client Option ****/
 		{
 			//create new client
 			createNewClient(vString);
 
-		} else if (vString[0] == "UNMATCH")
+		} else if (vString[0] == "UNMATCH")  /**** Unmatch Client Option ****/
 		{
 			//find client by name
 			try
@@ -108,18 +108,18 @@ int _tmain(int argc, _TCHAR* argv[])
 			}
 			
 
-		} else if (vString[0] == "PRINTMATCH")
+		} else if (vString[0] == "PRINTMATCH")  /**** Print Matched Clients Option ****/
 		{
 			//print clients that are matched ( can do one or other doesnt matter )
 			printMatchList(grepListForMatched(true, males));
 
-		} else if (vString[0] == "PRINTFREE")
+		} else if (vString[0] == "PRINTFREE")  /**** Print Free Clients Option ****/
 		{
 			//print clients without matches
 			printFreeList(grepListForMatched(false, males));
 			printFreeList(grepListForMatched(false, females));
 
-		} else if (vString[0] == "QUIT")
+		} else if (vString[0] == "QUIT")  /**** QUIT ****/
 		{
 			//exit program
 			done = true;
@@ -230,12 +230,24 @@ UnsortedList grepListForMatched(bool matched, UnsortedList &theList)
 
 void printMatchList(UnsortedList &listIn)
 {
+	cout << endl << "Matched Pairs" << endl;
 	//print out list passed in using matched
+	for (int i = 0; i < listIn.GetLength(); i++)
+	{
+		Client nextOne = listIn.GetNextItem();
+		cout << nextOne.getName() << " => " << nextOne.getMatch() << endl; 
+	}
 }
 
 void printFreeList(UnsortedList &listIn)
 {
+	cout << endl << "Free Clients" << endl;
 	//print out list passed in using free format
+	for (int i = 0; i < listIn.GetLength(); i++)
+	{
+		Client nextOne = listIn.GetNextItem();
+		cout << nextOne.getName() << " : " << nextOne.getPhone() << endl; 
+	}
 }
 
 vector<string> split_by_whitespace(string myStr)
@@ -265,3 +277,5 @@ vector<string> split_by_whitespace(string myStr)
 	}
 	return result;
 }
+
+//spitOUT() method that outputs strings to cout and to fileHandler
