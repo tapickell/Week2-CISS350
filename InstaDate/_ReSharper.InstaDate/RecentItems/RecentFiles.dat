@@ -4,23 +4,23 @@
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:fileHandler.cpp" caret="511" fromTop="24" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:stdafx.h" caret="387" fromTop="17" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.h" caret="509" fromTop="23" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.cpp" caret="654" fromTop="0" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.h" caret="287" fromTop="5" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.cpp" caret="545" fromTop="22" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:CLientNotFoundError.h" caret="176" fromTop="9" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:PatErrror.h" caret="167" fromTop="9" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:InstaDate.cpp" caret="2238" fromTop="66" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:CLientNotFoundError.h" caret="176" fromTop="9" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.cpp" caret="545" fromTop="0" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.h" caret="2169" fromTop="41" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.cpp" caret="3704" fromTop="40" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:InstaDate.cpp" caret="5138" fromTop="43" />
   </RecentFiles>
   <RecentEdits>
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:fileHandler.cpp" caret="278" fromTop="16" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.h" caret="287" fromTop="17" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.cpp" caret="241" fromTop="11" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:fileHandler.h" caret="169" fromTop="8" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:stdafx.h" caret="387" fromTop="17" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.cpp" caret="547" fromTop="16" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.h" caret="509" fromTop="23" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:CLientNotFoundError.h" caret="170" fromTop="8" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:PatErrror.h" caret="167" fromTop="9" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:InstaDate.cpp" caret="2238" fromTop="24" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.h" caret="2169" fromTop="41" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.cpp" caret="3704" fromTop="40" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:InstaDate.cpp" caret="5138" fromTop="43" />
   </RecentEdits>
 </RecentFiles>

@@ -72,6 +72,8 @@ public:
   // Pre:  List has been initialized.
   // Post: Current position is prior to list.
 
+  Client GetFirstItem();
+
   Client GetNextItem();
   // Function: Gets the next element in list.
   // Pre:  List has been initialized and has not been changed since last call.

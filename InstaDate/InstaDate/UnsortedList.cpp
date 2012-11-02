@@ -148,6 +148,17 @@ void UnsortedList::ResetList()
   currentPos = NULL;
 }
  
+Client UnsortedList::GetFirstItem()
+{
+	Client client;
+	if (currentPos != listData)
+	{
+		currentPos = listData;
+	}
+	client = currentPos->client;
+	return client;
+}
+
 Client UnsortedList::GetNextItem()
 // Post:  A copy of the next item in the list is returned.
 //        When the end of the list is reached, currentPos

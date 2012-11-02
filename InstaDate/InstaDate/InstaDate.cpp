@@ -30,12 +30,6 @@ Description: main program file
 #include "PatErrror.h"
 
 
-#define nc = "NEWCLIENT";
-#define um = "UNMATCH";
-#define pm = "PRINTMATCH";
-#define pf = "PRINTFREE";
-#define qt = "QUIT";
-
 using namespace std;
 
 void createNewClient(vector<string>);
@@ -55,12 +49,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	while (!done)
 	{
 		cout << "Instadate computer dating system" << endl;
+
 		string cinString;
 		//get input from user
 		cout << endl << "Enter a command: " << endl;
 		getline(cin, cinString);
 		//split string to vector
 		vector<string> vString = split_by_whitespace(cinString);
+
 		//pass choice to switch
 		if (vString[0] == "NEWCLIENT")
 		{
@@ -126,11 +122,12 @@ int _tmain(int argc, _TCHAR* argv[])
 		{
 			//default
 			cout << endl << "ERROR: Unknown Command!" << endl;
-		}
-	}
+
+		}//end if else (switch)
+	}//end main while loop
 
 
-	cout << endl << "Hello World!" << endl;
+	cout << endl << "Thank you for using InstaDate" << endl;
 	system("pause");
 	return 0;
 }
@@ -193,6 +190,20 @@ Client findClientByName(string nameIn, UnsortedList &theList)
 	}
 	//return Client object once found
 	return found;
+}
+
+/*
+	function: to search thru a list finding clients that are matched || notMatched
+			  depending on bool passed in, creating new list of clients that fit
+	pre: list is instantiated, are searching for matched or unmatched clients
+	post: returns a new list of either matched or unmatched clients
+		  doesnt alter list passed in
+*/
+UnsortedList grepListForMatched(bool matched, UnsortedList &theList)
+{
+	UnsortedList newList;
+	//getLength() on list
+	return newList;
 }
 
 void printList(UnsortedList &listIn)
