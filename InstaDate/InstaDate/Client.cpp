@@ -72,14 +72,12 @@ int Client::getNumInterest()
 }
 std::vector<std::string>  Client::getListInterest()
 {
-	std::vector<std::string> strStack;
-	//remove period at end of string
 	std::string workingStr;
+	//remove period at end of string
 	workingStr.assign(listInterest, 0, listInterest.size() - 1);
-	//split strings up by commas 
-	//push substrings to stack
-	//myTokenizer::split_by_token(workingStr, strStack, ",");
-	return strStack;
+	//split strings up by commas && push substrings to stack
+	std::string theDelim = ",";
+	return split_by_token(workingStr, theDelim);
 }
 std::string Client::getMatch()
 {
@@ -134,20 +132,19 @@ RelationType Client::ComparedTo(Client otherClient) const
 }
 
 //pass in the string to split, the vector to store the substrings in and the token to split with
-std::vector<std::string> split_by_token(std::string myStr, std::string sep)
+std::vector<std::string> Client::split_by_token(std::string myStr, std::string myDelim)
 {
     std::vector<std::string> result;
 
-    std::string::size_type i,j, len = myStr.size(), n = sep.size();
+	int i = 0;
+	int j = 0;
 
-    i = j = 0;
-
-    while ( i+n <= len )
+    while ( i+myDelim.size() <= myStr.size() )
     {
-        if ( myStr[i] == sep[0] && myStr.substr( i, n ) == sep )
+        if ( myStr[i] == myDelim[0] && myStr.substr( i, myDelim.size() ) == myDelim )
         {
             result.push_back( myStr.substr( j, i - j ) );
-            i = j = i + n;
+            i = j = i + myDelim.size();
         }
         else
         {
@@ -155,7 +152,7 @@ std::vector<std::string> split_by_token(std::string myStr, std::string sep)
         }
     }
 
-    result.push_back( myStr.substr( j, len-j ) );
+    result.push_back( myStr.substr( j, myStr.size()-j ) );
 
 	return result;
 }

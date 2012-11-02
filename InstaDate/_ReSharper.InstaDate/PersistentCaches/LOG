@@ -1,1 +1,5 @@
-2012/11/02-07:26:43.178 16b0 Delete type=3 #1
+2012/11/02-09:02:24.231 f3c Recovering log #3
+2012/11/02-09:02:24.232 f3c Level-0 table #5: started
+2012/11/02-09:02:24.288 f3c Level-0 table #5: 3849 bytes OK
+2012/11/02-09:02:24.332 f3c Delete type=0 #3
+2012/11/02-09:02:24.333 f3c Delete type=3 #2

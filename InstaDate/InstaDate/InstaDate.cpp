@@ -39,6 +39,7 @@ using namespace std;
 void createNewClient(vector<string>);
 void unmatchClient(Client&);
 void printList(UnsortedList&);
+vector<string> split_by_whitespace(string myStr);
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -94,4 +95,32 @@ void unmatchClient(Client &clientIN)
 void printList(UnsortedList &listIn)
 {
 
+}
+
+vector<string> split_by_whitespace(string myStr)
+{
+	size_t i, j;
+	vector<string> result;
+
+	for (i = j = 0; i < myStr.size(); )
+	{
+
+		while ( i < myStr.size() && ::isspace( myStr[i] ) ) i++;
+		j = i;
+
+		while ( i < myStr.size() && ! ::isspace( myStr[i]) ) i++;
+				
+		if (j < i)
+		{
+			result.push_back( myStr.substr( j, i - j ));
+
+			while ( i < myStr.size() && ::isspace( myStr[i])) i++;
+			j = i;
+		}
+	}
+	if (j < myStr.size())
+	{
+		result.push_back( myStr.substr( j, myStr.size() - j ));
+	}
+	return result;
 }
