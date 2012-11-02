@@ -26,6 +26,8 @@ Description: main program file
 #include "Client.h"
 #include "fileHandler.h"
 #include "UnsortedList.h"
+#include "ClientNotFoundError.h"
+#include "PatErrror.h"
 
 
 #define nc = "NEWCLIENT";
@@ -68,16 +70,45 @@ int _tmain(int argc, _TCHAR* argv[])
 		} else if (vString[0] == "UNMATCH")
 		{
 			//find client by name
-			Client foundClient = findClientByName(vString[1], males);
-			if (foundClient.getName() == "NOTFOUND")
+			try
 			{
-				foundClient = findClientByName(vString[1], females);
+				Client foundClient = findClientByName(vString[1], males);
 				if (foundClient.getName() == "NOTFOUND")
 				{
-					cout << endl << "ERROR: Client not found!" << endl;
+					foundClient = findClientByName(vString[1], females);
+					if (foundClient.getName() == "NOTFOUND")
+					{
+						throw ClientNotFoundError();
+					}
+				}
+				//unmatch client
+				string sexCharM = "M";
+				string sexCharF = "F";
+				if (foundClient.getSex() == sexCharM[0])
+				{
+					//call unmatch passing males list
+					unmatchClient(foundClient, males);
+
+				} else if (foundClient.getSex() == sexCharF[0])
+				{
+					//call unmatch passing females list
+					unmatchClient(foundClient, females);
+
+				} else
+				{
+					//defualt if sex doesnt equal either M || F
+					throw PatError();
 				}
 			}
-			//unmatch client
+			catch (ClientNotFoundError &e)
+			{
+				cerr << endl << "ERROR: " << e.what() << endl;
+			}
+			catch (PatError &e)
+			{
+				cerr << endl << "ERROR: " << e.what() << endl;
+			}
+			
 
 		} else if (vString[0] == "PRINTMATCH")
 		{
