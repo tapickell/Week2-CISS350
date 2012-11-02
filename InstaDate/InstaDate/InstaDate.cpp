@@ -45,6 +45,16 @@ int _tmain(int argc, _TCHAR* argv[])
 	//create lists
 	UnsortedList males;
 	UnsortedList females;
+	//put contents of clients file into lists
+	fileHandler clientsFile("Clients.mf");
+	vector<string> clientsFromFile = clientsFile.getFile();
+	for (int i = 0; i < clientsFromFile.size(); i++)// for each client in file
+	{
+		//split string by spaces to vector
+		vector<string> clientString = split_by_whitespace(clientsFromFile[i]);
+		//create new client to add to list
+		createNewClient(clientString, males, females);
+	}
 
 	//main loop
 	bool done = false;
@@ -57,13 +67,14 @@ int _tmain(int argc, _TCHAR* argv[])
 		//get input from user
 		cout << endl << "Enter a command: " << endl;
 		getline(cin, cinString);
-		//split string to vector
+		//split string by spaces to vector
 		vector<string> vString = split_by_whitespace(cinString);
 
 		//pass choice to switch
 		if (vString[0] == "NEWCLIENT")  /**** New Client Option ****/
 		{
 			//create new client
+			vString.erase(vString.begin());//pop 1st entry out of vector to make createNewClient reusable elswhere
 			createNewClient(vString, males, females);
 
 		} else if (vString[0] == "UNMATCH")  /**** Unmatch Client Option ****/
@@ -141,88 +152,94 @@ void createNewClient(vector<string> stringsIN, UnsortedList &maleList, UnsortedL
 	string sexCharM = "M";
 	string sexCharF = "F";
 	//create client object
-	string strChar = stringsIN[1]; //to go to char easily
-	Client newClient = Client(strChar[0], stringsIN[2], stringsIN[3], atoi(stringsIN[4].c_str()), stringsIN[5]);
-	//check for match with opposite sex list
-	vector<string> clientInterests = newClient.getListInterest();
-	try
+	string strChar = stringsIN[0]; //to go to char easily
+	if (stringsIN.size() > 5) // client string allready has match in it (came from file)
 	{
-		if (newClient.getSex() == sexCharM[0])
+		Client newClientWithMatch = Client(strChar[0], stringsIN[1], stringsIN[2], atoi(stringsIN[3].c_str()), stringsIN[4], stringsIN[5]);
+	} else //new client from prompt without match
+	{
+		Client newClient = Client(strChar[0], stringsIN[1], stringsIN[2], atoi(stringsIN[3].c_str()), stringsIN[4]);
+		//check for match with opposite sex list
+		vector<string> clientInterests = newClient.getListInterest();
+		try
 		{
-			bool found = false;
-			UnsortedList unmatchedFemales = grepListForMatched(false, femaleList); // get only unmatched females
-			for (int i = 0; i < unmatchedFemales.GetLength(); i++) // for each client on list
+			if (newClient.getSex() == sexCharM[0])
 			{
-				int matches = 0;
-				Client nextOne = unmatchedFemales.GetNextItem();
-				vector<string> matchInterests = nextOne.getListInterest(); // get interest list to check against
-				for (size_t i = 0; i < clientInterests.size(); i++) //for each male interest
+				bool found = false;
+				UnsortedList unmatchedFemales = grepListForMatched(false, femaleList); // get only unmatched females
+				for (int i = 0; i < unmatchedFemales.GetLength(); i++) // for each client on list
 				{
-					for (size_t j = 0; j < matchInterests.size(); j++) //for each female interest
+					int matches = 0;
+					Client nextOne = unmatchedFemales.GetNextItem();
+					vector<string> matchInterests = nextOne.getListInterest(); // get interest list to check against
+					for (size_t i = 0; i < clientInterests.size(); i++) //for each male interest
 					{
-						if (clientInterests[i] == matchInterests[j]) //if interest match found
-							matches++; // increment counter
+						for (size_t j = 0; j < matchInterests.size(); j++) //for each female interest
+						{
+							if (clientInterests[i] == matchInterests[j]) //if interest match found
+								matches++; // increment counter
+						}
+						if (matches >= 3) break; // no need to check all if 3 matches found
 					}
+					if (matches >= 3)
+					{
+						// if 3 or more interests match set as each others matches
+						newClient.setMatch(nextOne.getName());
+						bool foundInList;
+						femaleList.GetItem(nextOne, foundInList).setMatch(newClient.getName()); //needs to be matched client from original list passed in 
+						cout << endl << newClient.getName() << " : " << newClient.getPhone() << " => " << nextOne.getName() << " : " << nextOne.getPhone() << endl;
+					}// if not a match move onto next on list
 					if (matches >= 3) break; // no need to check all if 3 matches found
 				}
-				if (matches >= 3)
-				{
-					// if 3 or more interests match set as each others matches
-					newClient.setMatch(nextOne.getName());
-					bool foundInList;
-					femaleList.GetItem(nextOne, foundInList).setMatch(newClient.getName()); //needs to be matched client from original list passed in 
-					cout << endl << newClient.getName() << " : " << newClient.getPhone() << " => " << nextOne.getName() << " : " << nextOne.getPhone() << endl;
-				}// if not a match move onto next on list
-				if (matches >= 3) break; // no need to check all if 3 matches found
-			}
-			//when finished with list if still no matches found the spitout msg
-			if (newClient.getMatch() == " ") cout << endl << "No matches found for new client" << endl; 
+				//when finished with list if still no matches found the spitout msg
+				if (newClient.getMatch() == " ") cout << endl << "No matches found for new client" << endl; 
 
-			//add client to appropriate list
-			maleList.PutItem(newClient);
+				//add client to appropriate list
+				maleList.PutItem(newClient);
 
-		} else if (newClient.getSex() == sexCharF[0])
-		{
-			//add client to appropriate list
-			UnsortedList unmatchedMales = grepListForMatched(false, maleList); // get only unmatched males
-			for (int i = 0; i < unmatchedMales.GetLength(); i++) // for each client on list
+			} else if (newClient.getSex() == sexCharF[0])
 			{
-				int matches = 0;
-				Client nextOne = unmatchedMales.GetNextItem();
-				vector<string> matchInterests = nextOne.getListInterest(); // get interest list to check against
-				for (size_t i = 0; i < clientInterests.size(); i++) //for each male interest
+				//add client to appropriate list
+				UnsortedList unmatchedMales = grepListForMatched(false, maleList); // get only unmatched males
+				for (int i = 0; i < unmatchedMales.GetLength(); i++) // for each client on list
 				{
-					for (size_t j = 0; j < matchInterests.size(); j++) //for each female interest
+					int matches = 0;
+					Client nextOne = unmatchedMales.GetNextItem();
+					vector<string> matchInterests = nextOne.getListInterest(); // get interest list to check against
+					for (size_t i = 0; i < clientInterests.size(); i++) //for each male interest
 					{
-						if (clientInterests[i] == matchInterests[j]) //if interest match found
-							matches++; // increment counter
+						for (size_t j = 0; j < matchInterests.size(); j++) //for each female interest
+						{
+							if (clientInterests[i] == matchInterests[j]) //if interest match found
+								matches++; // increment counter
+						}
+						if (matches >= 3) break; // no need to check all if 3 matches found
 					}
+					if (matches >= 3)
+					{
+						// if 3 or more interests match set as each others matches
+						newClient.setMatch(nextOne.getName());
+						bool foundInList;
+						maleList.GetItem(nextOne, foundInList).setMatch(newClient.getName()); //needs to be matched client from original list passed in 
+						cout << endl << newClient.getName() << " : " << newClient.getPhone() << " => " << nextOne.getName() << " : " << nextOne.getPhone() << endl;
+					}// if not a match move onto next on list
 					if (matches >= 3) break; // no need to check all if 3 matches found
 				}
-				if (matches >= 3)
-				{
-					// if 3 or more interests match set as each others matches
-					newClient.setMatch(nextOne.getName());
-					bool foundInList;
-					maleList.GetItem(nextOne, foundInList).setMatch(newClient.getName()); //needs to be matched client from original list passed in 
-					cout << endl << newClient.getName() << " : " << newClient.getPhone() << " => " << nextOne.getName() << " : " << nextOne.getPhone() << endl;
-				}// if not a match move onto next on list
-				if (matches >= 3) break; // no need to check all if 3 matches found
+				//when finished with list if still no matches found the spitout msg
+				if (newClient.getMatch() == " ") cout << endl << "No matches found for new client" << endl; 
+
+				//add client to appropriate list
+				femaleList.PutItem(newClient);
+
+			} else
+			{
+				throw PatError();
 			}
-			//when finished with list if still no matches found the spitout msg
-			if (newClient.getMatch() == " ") cout << endl << "No matches found for new client" << endl; 
-
-			//add client to appropriate list
-			femaleList.PutItem(newClient);
-
-		} else
-		{
-			throw PatError();
 		}
-	}
-	catch (PatError &e)
-	{
-		cerr << endl << "ERROR: " << e.what() << endl;
+		catch (PatError &e)
+		{
+			cerr << endl << "ERROR: " << e.what() << endl;
+		}
 	}
 }
 
