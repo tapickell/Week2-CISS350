@@ -22,7 +22,6 @@ Description: implementation of Client ADT.
 ************************************************************************* */
 #include "stdafx.h"
 #include "Client.h"
-#include "Tokenizer.h"
 
 
 Client::Client(void)
@@ -79,7 +78,7 @@ std::vector<std::string>  Client::getListInterest()
 	workingStr.assign(listInterest, 0, listInterest.size() - 1);
 	//split strings up by commas 
 	//push substrings to stack
-	Tokenizer::split(workingStr, strStack, ",");
+	//myTokenizer::split_by_token(workingStr, strStack, ",");
 	return strStack;
 }
 std::string Client::getMatch()
@@ -125,11 +124,38 @@ RelationType Client::ComparedTo(Client otherClient) const
 {
 	if (numInterest < otherClient.numInterest)
 	{
-    return LESS;
-  } else if (numInterest > otherClient.numInterest)
-  {
-    return GREATER;
-  } else { 
-  	return EQUAL;
-  }	
+		return LESS;
+	} else if (numInterest > otherClient.numInterest)
+	{
+		return GREATER;
+	} else { 
+  		return EQUAL;
+	}	
+}
+
+//pass in the string to split, the vector to store the substrings in and the token to split with
+std::vector<std::string> split_by_token(std::string myStr, std::string sep)
+{
+    std::vector<std::string> result;
+
+    std::string::size_type i,j, len = myStr.size(), n = sep.size();
+
+    i = j = 0;
+
+    while ( i+n <= len )
+    {
+        if ( myStr[i] == sep[0] && myStr.substr( i, n ) == sep )
+        {
+            result.push_back( myStr.substr( j, i - j ) );
+            i = j = i + n;
+        }
+        else
+        {
+            i++;
+        }
+    }
+
+    result.push_back( myStr.substr( j, len-j ) );
+
+	return result;
 }

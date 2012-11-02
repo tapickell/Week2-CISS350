@@ -25,25 +25,24 @@ figure out how to include hasMoreTokens() && nextToken() so it just crams the re
 #pragma once
 #include "stdafx.h"
 
-#define MAX_32BIT_INT 2147483647
 
 //split strings up by token 
 //push substrings to stack
 
-namespace Tokenizer
+namespace myTokenizer
 {
 	namespace
 	{
-		void split_whitespace( const std::string & str, std::vector< std::string > & result, int maxsplit )
+		void split_by_whitespace( const std::string & myStr, std::vector< std::string > & result, int maxsplit )
 		{
-			std::string::size_type i, j, len = str.size();
+			std::string::size_type i, j, len = myStr.size();
 			for (i = j = 0; i < len; )
 			{
 
-				while ( i < len && ::isspace( str[i] ) ) i++;
+				while ( i < len && ::isspace( myStr[i] ) ) i++;
 				j = i;
 
-				while ( i < len && ! ::isspace( str[i]) ) i++;
+				while ( i < len && ! ::isspace( myStr[i]) ) i++;
 
 
 
@@ -51,43 +50,43 @@ namespace Tokenizer
 				{
 					if ( maxsplit-- <= 0 ) break;
 
-					result.push_back( str.substr( j, i - j ));
+					result.push_back( myStr.substr( j, i - j ));
 
-					while ( i < len && ::isspace( str[i])) i++;
+					while ( i < len && ::isspace( myStr[i])) i++;
 					j = i;
 				}
 			}
 			if (j < len)
 			{
-				result.push_back( str.substr( j, len - j ));
+				result.push_back( myStr.substr( j, len - j ));
 			}
 		}
 	}
 	//pass in the string to split, the vector to store the substrings in and the token to split with
-	void split( const std::string &str, std::vector< std::string > &result, const std::string &sep = "", int maxsplit = -1)
+	void split_by_token( const std::string &myStr, std::vector< std::string > &result, const std::string &sep = "", int maxsplit = -1)
     {
         result.clear();
 
-        if ( maxsplit < 0 ) maxsplit = MAX_32BIT_INT;//result.max_size();
+        if ( maxsplit < 0 ) maxsplit = 2147483647;//result.max_size();
 
 
         if ( sep.size() == 0 )
         {
-            split_whitespace( str, result, maxsplit );
+            split_by_whitespace( myStr, result, maxsplit );
             return;
         }
 
-        std::string::size_type i,j, len = str.size(), n = sep.size();
+        std::string::size_type i,j, len = myStr.size(), n = sep.size();
 
         i = j = 0;
 
         while ( i+n <= len )
         {
-            if ( str[i] == sep[0] && str.substr( i, n ) == sep )
+            if ( myStr[i] == sep[0] && myStr.substr( i, n ) == sep )
             {
                 if ( maxsplit-- <= 0 ) break;
 
-                result.push_back( str.substr( j, i - j ) );
+                result.push_back( myStr.substr( j, i - j ) );
                 i = j = i + n;
             }
             else
@@ -96,6 +95,6 @@ namespace Tokenizer
             }
         }
 
-        result.push_back( str.substr( j, len-j ) );
+        result.push_back( myStr.substr( j, len-j ) );
     }
 }

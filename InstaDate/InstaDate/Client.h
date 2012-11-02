@@ -51,6 +51,7 @@ public:
 	/* instance methods */
 	bool matched();
 	RelationType ComparedTo(Client) const;
+	std::vector<std::string> split_by_token(std::string, std::string);
 
 
 private:

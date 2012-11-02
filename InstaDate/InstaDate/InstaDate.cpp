@@ -27,6 +27,7 @@ Description: main program file
 #include "fileHandler.h"
 #include "UnsortedList.h"
 
+
 #define nc = "NEWCLIENT";
 #define um = "UNMATCH";
 #define pm = "PRINTMATCH";
@@ -55,6 +56,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		vector<string> vString;
 		getline(cin, cinString);
 		//split string to vector
+		
 		//pass choice to switch
 	}
 
