@@ -79,7 +79,7 @@ std::vector<std::string>  Client::getListInterest()
 	workingStr.assign(listInterest, 0, listInterest.size() - 1);
 	//split strings up by commas 
 	//push substrings to stack
-	Tokenizer::splitIt(workingStr, strStack, ",");
+	Tokenizer::split(workingStr, strStack, ",");
 	return strStack;
 }
 std::string Client::getMatch()

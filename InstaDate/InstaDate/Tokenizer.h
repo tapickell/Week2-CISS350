@@ -25,39 +25,77 @@ figure out how to include hasMoreTokens() && nextToken() so it just crams the re
 #pragma once
 #include "stdafx.h"
 
+#define MAX_32BIT_INT 2147483647
+
 //split strings up by token 
 //push substrings to stack
 
 namespace Tokenizer
 {
-	//pass in the string to split, the vector to store the substrings in and the token to split with
-	void splitIt(const std::string &str, std::vector<std::string> &strStack, const std::string &token)
-    {
-        std::string::size_type i, j, len, n;
+	namespace
+	{
+		void split_whitespace( const std::string & str, std::vector< std::string > & result, int maxsplit )
+		{
+			std::string::size_type i, j, len = str.size();
+			for (i = j = 0; i < len; )
+			{
 
-		len = str.size();
-		n = token.size();
-        i = 0; 
-		j = 0;
+				while ( i < len && ::isspace( str[i] ) ) i++;
+				j = i;
+
+				while ( i < len && ! ::isspace( str[i]) ) i++;
+
+
+
+				if (j < i)
+				{
+					if ( maxsplit-- <= 0 ) break;
+
+					result.push_back( str.substr( j, i - j ));
+
+					while ( i < len && ::isspace( str[i])) i++;
+					j = i;
+				}
+			}
+			if (j < len)
+			{
+				result.push_back( str.substr( j, len - j ));
+			}
+		}
+	}
+	//pass in the string to split, the vector to store the substrings in and the token to split with
+	void split( const std::string &str, std::vector< std::string > &result, const std::string &sep = "", int maxsplit = -1)
+    {
+        result.clear();
+
+        if ( maxsplit < 0 ) maxsplit = MAX_32BIT_INT;//result.max_size();
+
+
+        if ( sep.size() == 0 )
+        {
+            split_whitespace( str, result, maxsplit );
+            return;
+        }
+
+        std::string::size_type i,j, len = str.size(), n = sep.size();
+
+        i = j = 0;
 
         while ( i+n <= len )
         {
-			//find beginning of next token and see if that matches whole token
-            if (str[i] == token[0] && str.substr(i, n) == token)
+            if ( str[i] == sep[0] && str.substr( i, n ) == sep )
             {
-				//add substring before token to stack
-                strStack.push_back(str.substr( j, i - j ));
-				//after split reset trackers to beginning of next word
+                if ( maxsplit-- <= 0 ) break;
+
+                result.push_back( str.substr( j, i - j ) );
                 i = j = i + n;
             }
             else
             {
-				//move to next char if token not found
                 i++;
             }
         }
 
-		//grab last substring and add it to stack
-        strStack.push_back(str.substr( j, len-j ));
+        result.push_back( str.substr( j, len-j ) );
     }
 }

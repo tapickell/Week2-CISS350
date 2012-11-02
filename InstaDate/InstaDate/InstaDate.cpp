@@ -51,6 +51,10 @@ int _tmain(int argc, _TCHAR* argv[])
 		cout << "Instadate computer dating system" << endl;
 		//get input from user
 		cout << endl << "Enter a command: " << endl;
+		string cinString;
+		vector<string> vString;
+		getline(cin, cinString);
+		//split string to vector
 		//pass choice to switch
 	}
 
