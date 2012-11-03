@@ -170,7 +170,7 @@ Client UnsortedList::GetNextItem()
   else
     currentPos = currentPos->next;
   client = currentPos->client;
-  return client;
+  return client; // got thrown error ***************************************************!!!
 }
 
 UnsortedList::~UnsortedList()

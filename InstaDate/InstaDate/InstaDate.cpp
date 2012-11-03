@@ -59,10 +59,16 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	// **** main loop ****
+	cout << "Instadate computer dating system" << endl;
 	bool done = false;
 	while (!done)
 	{
-		cout << "Instadate computer dating system" << endl;
+		cout << endl << "Known commands:" << endl;
+		cout << endl << "NEWCLIENT: Sex Name Phone #interests listOfInterests" << endl;
+		cout << "UNMATCH: Name" << endl;
+		cout << "PRINTMATCH" << endl;
+		cout << "PRINTFREE" << endl;
+		cout << "QUIT" << endl;
 		string sexCharM = "M";
 		string sexCharF = "F";
 		string cinString;
@@ -185,7 +191,7 @@ void createNewClient(vector<string> stringsIN, UnsortedList &maleList, UnsortedL
 		}
 	} else //new client from prompt without match
 	{
-		Client newClient = Client(strChar[0], stringsIN[1], stringsIN[2], atoi(stringsIN[3].c_str()), stringsIN[4]);
+		Client newClient = Client(strChar[0], stringsIN[1], stringsIN[2], atoi(stringsIN[3].c_str()), stringsIN[4]); //got subscript out of range
 		//check for match with opposite sex list
 		vector<string> clientInterests = newClient.getListInterest();
 		try
@@ -193,11 +199,11 @@ void createNewClient(vector<string> stringsIN, UnsortedList &maleList, UnsortedL
 			if (newClient.getSex() == sexCharM[0])// new client is male
 			{
 				bool found = false;
-				UnsortedList unmatchedFemales = grepListForMatched(false, femaleList); // get only unmatched females
-				for (int i = 0; i < unmatchedFemales.GetLength(); i++) // for each client on list
+				//UnsortedList unmatchedFemales = grepListForMatched(false, femaleList); // get only unmatched females
+				for (int i = 0; i < femaleList.GetLength(); i++) // for each client on list
 				{
 					int matches = 0;
-					Client nextOne = unmatchedFemales.GetNextItem();
+					Client nextOne = femaleList.GetNextItem();
 					vector<string> matchInterests = nextOne.getListInterest(); // get interest list to check against
 					for (size_t i = 0; i < clientInterests.size(); i++) //for each male interest
 					{
@@ -227,11 +233,11 @@ void createNewClient(vector<string> stringsIN, UnsortedList &maleList, UnsortedL
 			} else if (newClient.getSex() == sexCharF[0])// new client is female
 			{
 				//add client to appropriate list
-				UnsortedList unmatchedMales = grepListForMatched(false, maleList); // get only unmatched males
-				for (int i = 0; i < unmatchedMales.GetLength(); i++) // for each client on list
+				//UnsortedList unmatchedMales = grepListForMatched(false, maleList); // get only unmatched males
+				for (int i = 0; i < maleList.GetLength(); i++) // for each client on list
 				{
 					int matches = 0;
-					Client nextOne = unmatchedMales.GetNextItem();
+					Client nextOne = maleList.GetNextItem(); // error from here ***************************************************!!!
 					vector<string> matchInterests = nextOne.getListInterest(); // get interest list to check against
 					for (size_t i = 0; i < clientInterests.size(); i++) //for each male interest
 					{

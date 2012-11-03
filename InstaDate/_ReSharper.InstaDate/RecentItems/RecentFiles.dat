@@ -4,12 +4,17 @@
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:PatErrror.h" caret="167" fromTop="9" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:CLientNotFoundError.h" caret="176" fromTop="9" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.h" caret="2169" fromTop="41" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.cpp" caret="3704" fromTop="79" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.h" caret="509" fromTop="14" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.cpp" caret="2259" fromTop="135" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:fileHandler.h" caret="169" fromTop="8" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:fileHandler.cpp" caret="511" fromTop="24" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:InstaDate.cpp" caret="4388" fromTop="10" />
+    <File id="7020124F-9FFC-4AC3-8F3D-AAB8E0240759/f:new.cpp/l:C!?Program Files (x86)?Microsoft Visual Studio 11.0?VC?crt?src?new.cpp" caret="1398" fromTop="23" />
+    <File id="7020124F-9FFC-4AC3-8F3D-AAB8E0240759/f:xmemory0/l:c!?Program Files (x86)?Microsoft Visual Studio 11.0?VC?include?xmemory0" caret="24391" fromTop="22" />
+    <File id="7020124F-9FFC-4AC3-8F3D-AAB8E0240759/f:xstring/l:c!?Program Files (x86)?Microsoft Visual Studio 11.0?VC?include?xstring" caret="25740" fromTop="22" />
+    <File id="7020124F-9FFC-4AC3-8F3D-AAB8E0240759/f:vector/l:c!?Program Files (x86)?Microsoft Visual Studio 11.0?VC?include?vector" caret="30300" fromTop="19" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.cpp" caret="1453" fromTop="20" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:InstaDate.cpp" caret="1717" fromTop="14" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.cpp" caret="4054" fromTop="16" />
+    <File id="7020124F-9FFC-4AC3-8F3D-AAB8E0240759/f:throw.cpp/l:C!?Program Files (x86)?Microsoft Visual Studio 11.0?VC?crt?src?eh?throw.cpp" caret="5074" fromTop="20" />
   </RecentFiles>
   <RecentEdits>
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:fileHandler.cpp" caret="278" fromTop="16" />
@@ -19,8 +24,8 @@
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:CLientNotFoundError.h" caret="170" fromTop="8" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:PatErrror.h" caret="167" fromTop="9" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.h" caret="2169" fromTop="41" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.cpp" caret="3704" fromTop="40" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.cpp" caret="2259" fromTop="35" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:InstaDate.cpp" caret="4344" fromTop="10" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.cpp" caret="4145" fromTop="22" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:InstaDate.cpp" caret="1717" fromTop="14" />
   </RecentEdits>
 </RecentFiles>
