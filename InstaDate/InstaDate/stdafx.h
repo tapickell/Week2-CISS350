@@ -10,10 +10,10 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <tchar.h>
-#include <string>
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <string>
 #include <sstream>
 #include <vector>
 

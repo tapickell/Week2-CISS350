@@ -54,14 +54,14 @@ void LinkedList::inRange(int index)
 		throw new std::string("List is empty");
 	} else if (index >= _count)
 	{
-		throw new std::string("Index is out of range");
+		throw new std::string("ERROR: Index is out of range");
 	}
 }
 
 Client LinkedList::getAt(int index)
 {
 	goToNode(index);
-	return visitPtr->data;
+	return visitPtr->data; // std::bad_alloc at memory location   ??? WT?
 }
 
 void LinkedList::goToNode(int index)
@@ -126,6 +126,14 @@ void LinkedList::clear()
 		removeAt(0);
 	}
 	head = NULL;
+}
+
+void LinkedList::to_str()
+{
+	for (int i = 0; i < (*this).count(); i++)
+	{
+		(*this)[i].to_str();
+	}
 }
 
 Client LinkedList::operator[] (int index)

@@ -51,6 +51,7 @@ public:
 	void setMatch(std::string);
 
 	/* instance methods */
+	void to_str();
 	bool matched();
 	RelationType ComparedTo(Client) const;
 	std::vector<std::string> split_by_token(std::string, std::string);
@@ -63,6 +64,7 @@ private:
 	int numInterest;
 	std::string listInterest;
 	std::string match;
+	std::string getStringInterest();
 
 };
 

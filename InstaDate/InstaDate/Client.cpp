@@ -94,6 +94,11 @@ std::string Client::getMatch()
 	return match;
 }
 
+std::string Client::getStringInterest()
+{
+	return listInterest;
+}
+
 
 /* setters */
 void Client::setSex(char charIN)
@@ -123,6 +128,17 @@ void Client::setMatch(std::string strIN)
 
 
 /* instance methods */
+
+/*
+	function:
+	pre:
+	post:
+*/
+void Client::to_str()
+{
+	//stringstream ss; not working??? nevermind just cout =>
+	std::cout << std::endl << getSex() << " " << getName() << " " << getPhone() << " " << getNumInterest() << " " << getStringInterest() << " " << getMatch() << std::endl; 
+}
 /*
 	function:
 	pre:

@@ -374,7 +374,7 @@ void printMatchList(LinkedList &listIn)
 	//print out list passed in using matched
 	for (int i = 0; i < listIn.count(); i++)
 	{
-		Client nextOne = listIn.getAt(i);
+		Client nextOne = listIn.getAt(i);//error starting here!!!! #####################
 		cout << nextOne.getName() << " => " << nextOne.getMatch() << endl; 
 	}
 }
@@ -391,7 +391,7 @@ void printFreeList(LinkedList &listIn)
 	//print out list passed in using free format
 	for (int i = 0; i < listIn.count(); i++)
 	{
-		Client nextOne = listIn.getAt(i);
+		Client nextOne = listIn.getAt(i); //error starting here!!!! #####################
 		cout << nextOne.getName() << " : " << nextOne.getPhone() << endl; 
 	}
 }

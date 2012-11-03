@@ -14,6 +14,7 @@ public:
     void clear();
     Client operator [] (int);
 	int operator += (Client);
+	void to_str();
 
 private:
     int _count;
