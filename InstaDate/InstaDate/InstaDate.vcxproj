@@ -82,6 +82,8 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="CLientNotFoundError.h" />
     <ClInclude Include="fileHandler.h" />
+    <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="node.h" />
     <ClInclude Include="PatErrror.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -91,6 +93,7 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="fileHandler.cpp" />
     <ClCompile Include="InstaDate.cpp" />
+    <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>

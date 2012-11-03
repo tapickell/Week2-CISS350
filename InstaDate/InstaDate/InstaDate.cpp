@@ -345,11 +345,11 @@ UnsortedList grepListForMatched(bool matched, UnsortedList &theList)
 		//check if matched then add or not to list
 		if (matched)
 		{
-			if (nextOne.matched())
+			if (nextOne.matched() == true)
 				newList.PutItem(nextOne);
-		} else
+		} else //not matched
 		{
-			if (!nextOne.matched())
+			if (nextOne.matched()== false)
 				newList.PutItem(nextOne);
 		}
 		
@@ -432,3 +432,8 @@ vector<string> split_by_whitespace(string myStr)
 	post:
 */
 //spitOUT() method that outputs strings to cout and to fileHandler
+void spitout(string strIN)
+{
+	fileHandler outFile("Dates.out");
+
+}
