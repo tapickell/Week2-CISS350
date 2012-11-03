@@ -3,16 +3,16 @@
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:PatErrror.h" caret="167" fromTop="9" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:CLientNotFoundError.h" caret="176" fromTop="9" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.h" caret="2169" fromTop="41" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:fileHandler.h" caret="169" fromTop="8" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:fileHandler.cpp" caret="511" fromTop="6" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:node.h" caret="19" fromTop="0" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.cpp" caret="3592" fromTop="4" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.h" caret="1426" fromTop="36" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:stdafx.h" caret="348" fromTop="15" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.cpp" caret="2344" fromTop="12" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:InstaDate.cpp" caret="10835" fromTop="12" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:LinkedList.h" caret="287" fromTop="16" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:LinkedList.cpp" caret="2289" fromTop="27" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:LinkedList.h" caret="334" fromTop="18" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:fileHandler.h" caret="169" fromTop="8" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.h" caret="1175" fromTop="25" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.cpp" caret="2290" fromTop="30" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:LinkedList.cpp" caret="2377" fromTop="33" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:InstaDate.cpp" caret="11199" fromTop="243" />
   </RecentFiles>
   <RecentEdits>
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:fileHandler.cpp" caret="278" fromTop="16" />
@@ -22,11 +22,11 @@
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.h" caret="2169" fromTop="41" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:UnsortedList.cpp" caret="3810" fromTop="88" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:node.h" caret="19" fromTop="0" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.h" caret="1426" fromTop="36" />
     <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:stdafx.h" caret="348" fromTop="15" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.cpp" caret="2344" fromTop="12" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:InstaDate.cpp" caret="10835" fromTop="12" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:LinkedList.h" caret="287" fromTop="16" />
-    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:LinkedList.cpp" caret="2091" fromTop="12" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:LinkedList.h" caret="334" fromTop="18" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.h" caret="1175" fromTop="25" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:Client.cpp" caret="2290" fromTop="30" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:LinkedList.cpp" caret="2377" fromTop="33" />
+    <File id="20A5D981-8A34-4B3A-B603-8A1DED47874C/f:InstaDate.cpp" caret="10891" fromTop="4" />
   </RecentEdits>
 </RecentFiles>

@@ -15,6 +15,8 @@ public:
     Client operator [] (int);
 	int operator += (Client);
 	void to_str();
+	void to_str_matched();
+	void to_str_free();
 
 private:
     int _count;

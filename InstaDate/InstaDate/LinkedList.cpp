@@ -136,6 +136,22 @@ void LinkedList::to_str()
 	}
 }
 
+void LinkedList::to_str_matched()
+{
+	for (int i = 0; i < (*this).count(); i++)
+	{
+		(*this)[i].to_str_matched();
+	}
+}
+
+void LinkedList::to_str_free()
+{
+	for (int i = 0; i < (*this).count(); i++)
+	{
+		(*this)[i].to_str_free();
+	}
+}
+
 Client LinkedList::operator[] (int index)
 {
 	return getAt(index);

@@ -136,9 +136,32 @@ void Client::setMatch(std::string strIN)
 */
 void Client::to_str()
 {
-	//stringstream ss; not working??? nevermind just cout =>
+	//std::stringstream ss; //not working??? nevermind just cout =>
 	std::cout << std::endl << getSex() << " " << getName() << " " << getPhone() << " " << getNumInterest() << " " << getStringInterest() << " " << getMatch() << std::endl; 
 }
+
+/*
+	function:
+	pre:
+	post:
+*/
+void Client::to_str_matched()
+{
+	//stringstream ss; not working??? nevermind just cout =>
+	std::cout << getName() << " => " << getMatch() << std::endl;
+}
+
+/*
+	function:
+	pre:
+	post:
+*/
+void Client::to_str_free()
+{
+	//stringstream ss; not working??? nevermind just cout =>
+	std::cout << getName() << " : " << getPhone() << std::endl;  
+}
+
 /*
 	function:
 	pre:

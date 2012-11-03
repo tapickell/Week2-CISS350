@@ -37,7 +37,7 @@ using namespace std;
 void createNewClient(vector<string>, LinkedList&, LinkedList&);
 void unmatchClient(Client&, LinkedList&);
 Client findClientByName(string, LinkedList&);
-LinkedList grepListForMatched(bool , LinkedList&);
+void grepListForMatched(bool , LinkedList&);
 void printMatchList(LinkedList&);
 void printFreeList(LinkedList&);
 vector<string> split_by_whitespace(string);
@@ -78,12 +78,13 @@ int _tmain(int argc, _TCHAR* argv[])
 		getline(cin, cinString);
 		//split string by spaces to vector
 		vector<string> vString = split_by_whitespace(cinString);
-
+		//cout << endl << vString[0] << endl;
 		//pass choice to switch
 		if (vString[0] == "NEWCLIENT")  /**** New Client Option ****/
 		{
 			//create new client
 			vString.erase(vString.begin());//pop 1st entry out of vector to make createNewClient reusable elswhere
+			//cout << endl << vString[0] << endl;
 			createNewClient(vString, males, females);
 
 		} else if (vString[0] == "UNMATCH")  /**** Unmatch Client Option ****/
@@ -130,13 +131,13 @@ int _tmain(int argc, _TCHAR* argv[])
 		} else if (vString[0] == "PRINTMATCH")  /**** Print Matched Clients Option ****/
 		{
 			//print clients that are matched ( can do one or other doesnt matter )
-			printMatchList(grepListForMatched(true, males));
+			grepListForMatched(true, males);
 
 		} else if (vString[0] == "PRINTFREE")  /**** Print Free Clients Option ****/
 		{
 			//print clients without matches
-			printFreeList(grepListForMatched(false, males));
-			printFreeList(grepListForMatched(false, females));
+			grepListForMatched(false, males);
+			grepListForMatched(false, females);
 
 		} else if (vString[0] == "QUIT")  /**** QUIT ****/
 		{
@@ -340,10 +341,11 @@ Client findClientByName(string nameIn, LinkedList &theList) //need to rework to 
 	post: returns a new list of either matched or unmatched clients
 		  doesnt alter list passed in
 */
-LinkedList grepListForMatched(bool matched, LinkedList &theList)
+void grepListForMatched(bool matched, LinkedList &theList)
 {
 	LinkedList newList;
-	
+	//cout << "theLIst" << endl;
+	//theList.to_str();
 	//iterate thru list to check each client
 	for (int i = 0; i < theList.count(); i++)
 	{
@@ -359,42 +361,47 @@ LinkedList grepListForMatched(bool matched, LinkedList &theList)
 		}
 		
 	}
-	return newList;
+	//cout << "newList" << endl;
+	//newList.to_str();
+	cout << endl << ( matched ? "Matched Pairs:" : "Free Clients:" ) << endl;
+	matched ? newList.to_str_matched() : newList.to_str_free();
 }
 
 
-/*
-	function:
-	pre:
-	post:
-*/
-void printMatchList(LinkedList &listIn)
-{
-	cout << endl << "Matched Pairs" << endl;
-	//print out list passed in using matched
-	for (int i = 0; i < listIn.count(); i++)
-	{
-		Client nextOne = listIn.getAt(i);//error starting here!!!! #####################
-		cout << nextOne.getName() << " => " << nextOne.getMatch() << endl; 
-	}
-}
-
-
-/*
-	function:
-	pre:
-	post:
-*/
-void printFreeList(LinkedList &listIn)
-{
-	cout << endl << "Free Clients" << endl;
-	//print out list passed in using free format
-	for (int i = 0; i < listIn.count(); i++)
-	{
-		Client nextOne = listIn.getAt(i); //error starting here!!!! #####################
-		cout << nextOne.getName() << " : " << nextOne.getPhone() << endl; 
-	}
-}
+///*  refactored into Client, List and grepLiatForMatched to work better
+//	function:
+//	pre:
+//	post:
+//*/
+//void printMatchList(LinkedList &listIn)
+//{
+//	cout << "listIn" << endl;
+//	listIn.to_str();
+//	cout << endl << "Matched Pairs" << endl;
+//	//print out list passed in using matched
+//	for (int i = 0; i < listIn.count(); i++)
+//	{
+//		Client nextOne = listIn.getAt(i);//error starting here!!!! #####################
+//		cout << nextOne.getName() << " => " << nextOne.getMatch() << endl; 
+//	}
+//}
+//
+//
+///*
+//	function:
+//	pre:
+//	post:
+//*/
+//void printFreeList(LinkedList &listIn)
+//{
+//	cout << endl << "Free Clients" << endl;
+//	//print out list passed in using free format
+//	for (int i = 0; i < listIn.count(); i++)
+//	{
+//		Client nextOne = listIn.getAt(i); //error starting here!!!! #####################
+//		cout << nextOne.getName() << " : " << nextOne.getPhone() << endl; 
+//	}
+//}
 
 
 /*
