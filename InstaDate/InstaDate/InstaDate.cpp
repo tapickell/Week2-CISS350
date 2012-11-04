@@ -33,7 +33,7 @@ Description: main program file
 
 using namespace std;
 
-// function declarations
+// function declarations ########################################
 void createNewClient(vector<string>, LinkedList&, LinkedList&);
 void unmatchClient(int, LinkedList&, LinkedList&);
 int findClientByName(string, LinkedList&);
@@ -41,16 +41,23 @@ void grepListForMatched(bool , LinkedList&);
 void printMatchList(LinkedList&);
 void printFreeList(LinkedList&);
 vector<string> split_by_whitespace(string);
+void spitout(string);
+void failout(string);
 
-// **** main ****
+
+// main  #######################################################################
 int _tmain(int argc, _TCHAR* argv[])
 {
 	//create lists for clients
 	LinkedList males;
 	LinkedList females;
+
 	//put contents of clients file into lists
 	fileHandler clientsFile("Clients.mf");
-	vector<string> clientsFromFile = clientsFile.getFile();
+	fileHandler outFile("Dates.out");
+	outFile.getFile(); //create new file
+	vector<string> clientsFromFile = clientsFile.getFile(); // get clients from file
+
 	for (size_t i = 0; i < clientsFromFile.size(); i++)// for each client in file
 	{
 		//split string by spaces to vector
@@ -60,21 +67,23 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	// **** main loop ****
-	cout << "Instadate computer dating system" << endl;
+	spitout("Instadate computer dating system");
 	bool done = false;
 	while (!done)
 	{
-		cout << endl << "Known commands:" << endl;
-		cout << endl << "NEWCLIENT: Sex Name Phone #interests listOfInterests" << endl;
-		cout << "UNMATCH: Name" << endl;
-		cout << "PRINTMATCH" << endl;
-		cout << "PRINTFREE" << endl;
-		cout << "QUIT" << endl;
+		cout << endl;
+		spitout("Known commands:");
+		spitout("NEWCLIENT: Sex Name Phone #interests listOfInterests");
+		spitout("UNMATCH: Name");
+		spitout("PRINTMATCH");
+		spitout("PRINTFREE");
+		spitout("QUIT");
 		string sexCharM = "M";
 		string sexCharF = "F";
 		string cinString;
 		//get input from user
-		cout << endl << "Enter a command: " << endl;
+		cout << endl;
+		spitout("Enter a command: ");
 		getline(cin, cinString);
 		//split string by spaces to vector
 		vector<string> vString = split_by_whitespace(cinString);
@@ -108,7 +117,7 @@ int _tmain(int argc, _TCHAR* argv[])
 					if (manly)
 					{
 						//call unmatch passing males list
-						cout << "Found Clent is male" << endl;
+						//cout << "Found Clent is male" << endl;
 						unmatchClient(foundClient, males, females);
 
 					} else if (!manly)
@@ -125,11 +134,15 @@ int _tmain(int argc, _TCHAR* argv[])
 			}
 			catch (ClientNotFoundError &e)
 			{
-				cerr << endl << "ERROR: " << e.what() << endl;
+				stringstream fail;
+				fail << "ERROR: " << e.what();
+				failout(fail.str());
 			}
 			catch (PatError &e)
 			{
-				cerr << endl << "ERROR: " << e.what() << endl;
+				stringstream fail;
+				fail << "ERROR: " << e.what();
+				failout(fail.str());
 			}
 			
 
@@ -141,7 +154,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		} else if (vString[0] == "PRINTFREE")  /**** Print Free Clients Option ****/
 		{
 			//print clients without matches
-			cout <<  endl << "Free Clients:" << endl;
+			spitout("Free Clients:");
 			grepListForMatched(false, males);
 			grepListForMatched(false, females);
 
@@ -152,19 +165,19 @@ int _tmain(int argc, _TCHAR* argv[])
 		} else
 		{
 			//default
-			cout << endl << "ERROR: Unknown Command!" << endl;
+			failout("ERROR: Unknown Command!");
 
 		}//end if else (switch)
 	}//end main while loop
 
 
-	cout << endl << "Thank you for using InstaDate" << endl; // exit message
+	spitout("Thank you for using InstaDate"); // exit message
 	system("pause");
 	return 0;
 }
 
 
-/*
+/* #####################################################
 	function:
 	pre:
 	post:
@@ -195,7 +208,9 @@ void createNewClient(vector<string> stringsIN, LinkedList &maleList, LinkedList 
 		}
 		catch (PatError &e)
 		{
-			cerr << endl << "ERROR: " << e.what() << endl;
+			stringstream fail;
+			fail << "ERROR: " << e.what();
+			failout(fail.str());
 		}
 	} else //new client from prompt without match
 	{
@@ -229,12 +244,14 @@ void createNewClient(vector<string> stringsIN, LinkedList &maleList, LinkedList 
 						nextOne.setMatch(newClient.getName()); //needs to be matched client from original list passed in 
 						femaleList.removeAt(i);
 						femaleList += nextOne;
-						cout << endl << newClient.getName() << " : " << newClient.getPhone() << " => " << nextOne.getName() << " : " << nextOne.getPhone() << endl;
+						stringstream clientString;
+						clientString << endl << newClient.getName() << " : " << newClient.getPhone() << " => " << nextOne.getName() << " : " << nextOne.getPhone() << endl;
+						spitout(clientString.str());
 					}// if not a match move onto next on list
 					if (matches >= 3) break; // no need to check all if 3 matches found
 				}
 				//when finished with list if still no matches found the spitout msg
-				if (newClient.getMatch() == " ") cout << endl << "No matches found for new client" << endl; 
+				if (newClient.getMatch() == " ") spitout("No matches found for new client"); 
 
 				//add client to appropriate list
 				maleList += newClient;
@@ -264,12 +281,14 @@ void createNewClient(vector<string> stringsIN, LinkedList &maleList, LinkedList 
 						nextOne.setMatch(newClient.getName()); //needs to be matched client from original list passed in 
 						maleList.removeAt(i);
 						maleList += nextOne;
-						cout << endl << newClient.getName() << " : " << newClient.getPhone() << " => " << nextOne.getName() << " : " << nextOne.getPhone() << endl;
+						stringstream clientString;
+						clientString << endl << newClient.getName() << " : " << newClient.getPhone() << " => " << nextOne.getName() << " : " << nextOne.getPhone() << endl;
+						spitout(clientString.str());
 					}// if not a match move onto next on list
 					if (matches >= 3) break; // no need to check all if 3 matches found
 				}
 				//when finished with list if still no matches found the spitout msg
-				if (newClient.getMatch() == " ") cout << endl << "No matches found for new client" << endl; 
+				if (newClient.getMatch() == " ") spitout("No matches found for new client"); 
 
 				//add client to appropriate list
 				femaleList += newClient;
@@ -281,13 +300,15 @@ void createNewClient(vector<string> stringsIN, LinkedList &maleList, LinkedList 
 		}
 		catch (PatError &e)
 		{
-			cerr << endl << "ERROR: " << e.what() << endl;
+			stringstream fail;
+			fail << "ERROR: " << e.what();
+			failout(fail.str());
 		}
 	}
 }
 
 
-/* 
+/* #####################################################
 	function: unmatch a client from current match
 	pre: client has been found using findClientByName() 
 		 checked sex to pass in correct list
@@ -303,7 +324,7 @@ void unmatchClient(int clientIN, LinkedList &list1, LinkedList &list2)
 		
 		if (list2[matchedClient].getName() != "NOTFOUND")
 		{
-			cout << "clearing matches on both clients!" << endl;
+			spitout("clearing matches on both clients!");
 			//clear matches for both clients
 			Client Bob = list1[clientIN];
 			Client Barb = list2[matchedClient];
@@ -314,15 +335,15 @@ void unmatchClient(int clientIN, LinkedList &list1, LinkedList &list2)
 			list1 += Bob;
 			list2 += Barb; 
 		} else {
-			cout << endl << "ERROR: Matched client not found!" << endl;
+			failout("ERROR: Matched client not found!");
 		}
 	} else {
-		cout << endl << "ERROR: Client is not matched!" << endl;
+		failout("ERROR: Client is not matched!");
 	}
 }
 
 
-/*
+/* #####################################################
 	function:searches thru list to find client name
 	pre: name and list is passed into
 	post: returns the index of where the name was found in the list
@@ -337,7 +358,7 @@ int findClientByName(string nameIn, LinkedList &theList) //need to rework to sea
 	{
 		if (theList[i].getName() == nameIn) // if found return Client object index
 		{
-			cout << endl << "Name Match Found" << endl;
+			failout("Name Match Found");
 			found = i;
 			isFound = true;
 		}
@@ -345,14 +366,13 @@ int findClientByName(string nameIn, LinkedList &theList) //need to rework to sea
 	if (!isFound) //if not found kickout error
 	{
 		found = -1;
-		cout << endl << "ERROR: Client Not Found!" << endl;
+		failout("ERROR: Client Not Found!");
 	}
-	cout << isFound << endl;
 	return found;
 }
 
 
-/*
+/* #####################################################
 	function: to search thru a list finding clients that are matched || notMatched
 			  depending on bool passed in, creating new list of clients that fit
 	pre: list is instantiated, are searching for matched or unmatched clients
@@ -381,7 +401,7 @@ void grepListForMatched(bool matched, LinkedList &theList)
 	}
 	//cout << "newList" << endl;
 	//newList.to_str();
-	if (matched) cout << endl << "Matched Pairs:" << endl;
+	if (matched) spitout("Matched Pairs:");
 
 	matched ? newList.to_str_matched() : newList.to_str_free();
 }
@@ -428,7 +448,7 @@ void doNothing()
 //}
 
 
-/*
+/* #####################################################
 	function:
 	pre:
 	post:
@@ -462,7 +482,7 @@ vector<string> split_by_whitespace(string myStr)
 }
 
 
-/*
+/* #####################################################
 	function:
 	pre:
 	post:
@@ -470,6 +490,18 @@ vector<string> split_by_whitespace(string myStr)
 //spitOUT() method that outputs strings to cout and to fileHandler
 void spitout(string strIN)
 {
-	fileHandler outFile("Dates.out");
+	cout << strIN << endl;
+	fileHandler spitFile("Dates.out");
+	vector<string> output;
+	output.push_back(strIN);
+	spitFile.putFile(output);
+}
 
+void failout(string strIN)
+{
+	cerr << strIN << endl;
+	fileHandler spitFile("Dates.out");
+	vector<string> output;
+	output.push_back(strIN);
+	spitFile.putFile(output);
 }

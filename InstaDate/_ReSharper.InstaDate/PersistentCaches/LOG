@@ -1,14 +1,5 @@
-2012/11/03-19:30:11.686 b60 Recovering log #64
-2012/11/03-19:30:11.686 b60 Level-0 table #66: started
-2012/11/03-19:30:11.753 b60 Level-0 table #66: 2045 bytes OK
-2012/11/03-19:30:11.806 b60 Delete type=0 #64
-2012/11/03-19:30:11.806 b60 Delete type=3 #62
-2012/11/03-19:30:11.809 1ac4 Compacting 4@0 + 1@1 files
-2012/11/03-19:30:11.840 1ac4 Generated table #68: 27 keys, 2907 bytes
-2012/11/03-19:30:11.840 1ac4 Compacted 4@0 + 1@1 files => 2907 bytes
-2012/11/03-19:30:11.863 1ac4 Delete type=2 #55
-2012/11/03-19:30:11.863 1ac4 Delete type=2 #57
-2012/11/03-19:30:11.863 1ac4 Delete type=2 #60
-2012/11/03-19:30:11.863 1ac4 Delete type=2 #63
-2012/11/03-19:30:11.863 1ac4 Delete type=2 #66
-2012/11/03-19:30:11.863 1ac4 compacted to: files[ 0 1 0 0 0 0 0 ]
+2012/11/04-11:11:00.949 12b8 Recovering log #67
+2012/11/04-11:11:00.949 12b8 Level-0 table #70: started
+2012/11/04-11:11:00.972 12b8 Level-0 table #70: 660 bytes OK
+2012/11/04-11:11:01.016 12b8 Delete type=0 #67
+2012/11/04-11:11:01.016 12b8 Delete type=3 #65
