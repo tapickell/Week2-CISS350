@@ -35,8 +35,8 @@ using namespace std;
 
 // function declarations
 void createNewClient(vector<string>, LinkedList&, LinkedList&);
-void unmatchClient(Client&, LinkedList&);
-Client findClientByName(string, LinkedList&);
+void unmatchClient(int, LinkedList&, LinkedList&);
+int findClientByName(string, LinkedList&);
 void grepListForMatched(bool , LinkedList&);
 void printMatchList(LinkedList&);
 void printFreeList(LinkedList&);
@@ -92,30 +92,35 @@ int _tmain(int argc, _TCHAR* argv[])
 			//find client by name
 			try
 			{
-				Client foundClient = findClientByName(vString[1], males);
-				if (foundClient.getName() == "NOTFOUND")
+				int foundClient = findClientByName(vString[1], males);
+				bool manly = (foundClient < 0) ? false : true;
+				if (foundClient < 0)
 				{
 					foundClient = findClientByName(vString[1], females);
-					if (foundClient.getName() == "NOTFOUND")
+					if (foundClient < 0)
 					{
 						throw ClientNotFoundError();
 					}
 				}
-				//unmatch client
-				if (foundClient.getSex() == sexCharM[0])
+				if (foundClient >= 0)
 				{
-					//call unmatch passing males list
-					unmatchClient(foundClient, males);
+					//unmatch client
+					if (manly)
+					{
+						//call unmatch passing males list
+						cout << "Found Clent is male" << endl;
+						unmatchClient(foundClient, males, females);
 
-				} else if (foundClient.getSex() == sexCharF[0])
-				{
-					//call unmatch passing females list
-					unmatchClient(foundClient, females);
+					} else if (!manly)
+					{
+						//call unmatch passing females list
+						unmatchClient(foundClient, females, males);
 
-				} else
-				{
-					//defualt if sex doesnt equal either M || F
-					throw PatError();
+					} else
+					{
+						//defualt if sex doesnt equal either M || F
+						throw PatError();
+					}
 				}
 			}
 			catch (ClientNotFoundError &e)
@@ -284,18 +289,25 @@ void createNewClient(vector<string> stringsIN, LinkedList &maleList, LinkedList 
 		 client has a match and match can be found
 	post: both client and matched client will have match set to " "
 */
-void unmatchClient(Client &clientIN, LinkedList &theList)
+void unmatchClient(int clientIN, LinkedList &list1, LinkedList &list2)
 {
-	if (clientIN.getMatch() != " ")
+	if (list1[clientIN].getMatch() != " ")
 	{
 		//find matched client by name
-		Client matchedClient = findClientByName(clientIN.getMatch(), theList);
+		int matchedClient = findClientByName(list1[clientIN].getMatch(), list2);
 		
-		if (matchedClient.getName() != "NOTFOUND")
+		if (list2[matchedClient].getName() != "NOTFOUND")
 		{
+			cout << "clearing matches on both clients!" << endl;
 			//clear matches for both clients
-			clientIN.setMatch(" ");
-			matchedClient.setMatch(" ");
+			Client Bob = list1[clientIN];
+			Client Barb = list2[matchedClient];
+			Bob.setMatch(" ");
+			Barb.setMatch(" ");
+			list1.removeAt(clientIN);
+			list2.removeAt(matchedClient);
+			list1 += Bob;
+			list2 += Barb; 
 		} else {
 			cout << endl << "ERROR: Matched client not found!" << endl;
 		}
@@ -306,30 +318,31 @@ void unmatchClient(Client &clientIN, LinkedList &theList)
 
 
 /*
-	function:
-	pre:
-	post:
+	function:searches thru list to find client name
+	pre: name and list is passed into
+	post: returns the index of where the name was found in the list
 */
-Client findClientByName(string nameIn, LinkedList &theList) //need to rework to search till name is found
+int findClientByName(string nameIn, LinkedList &theList) //need to rework to search till name is found
 {
 	bool isFound = false;
-	Client found;
+	theList.to_str();
+	int found;
 	//traverse list loooking for client by name
 	for (int i = 0; i < theList.count(); i++)
 	{
 		if (theList[i].getName() == nameIn) // if found return Client object
 		{
 			cout << endl << "Name Match Found" << endl;
-			found = theList.getAt(i);
+			found = i;
 			isFound = true;
 		}
 	}
 	if (!isFound) //if not found kickout error
 	{
-		found = Client(-1);
+		found = -1;
 		cout << endl << "ERROR: Client Not Found!" << endl;
 	}
-
+	cout << isFound << endl;
 	return found;
 }
 

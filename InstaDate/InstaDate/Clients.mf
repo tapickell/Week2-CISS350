@@ -1,6 +1,6 @@
-M Bob 555-1212 5 hunting,mudding,camping,fishing,drinking. Barb
-F Barb 555-1313 3 camping,fishing,drinking. Bob
-M Tom 555-1414 4 reading,writing,math,science. Susan
-F Susan 555-1515 5 reading,writing,science,astronomy,physics. Tom
-F JoAnn 555-1616 3 cheerleading,makeup,football. Mike
-M Mike 555-1717 5 cheerleading,football,drinking,motorcycles. JoAnn
+M Bob, 555-1212 5 hunting,mudding,camping,fishing,drinking. Barb
+F Barb, 555-1313 3 camping,fishing,drinking. Bob
+M Tom, 555-1414 4 reading,writing,math,science. Susan
+F Susan, 555-1515 5 reading,writing,science,astronomy,physics. Tom
+F JoAnn, 555-1616 3 cheerleading,makeup,football. Mike
+M Mike, 555-1717 5 cheerleading,football,drinking,motorcycles. JoAnn

@@ -1,14 +1,14 @@
-﻿Build started 11/3/2012 4:39:53 PM.
+﻿Build started 11/3/2012 7:15:30 PM.
      1>Project "D:\tpickell\Documents\GitHub\Week2-CISS350\InstaDate\InstaDate\InstaDate.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\InstaDate.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt InstaDate.cpp
          InstaDate.cpp
-     1>d:\tpickell\documents\github\week2-ciss350\instadate\instadate\instadate.cpp(223): warning C4258: 'i' : definition from the for loop is ignored; the definition from the enclosing scope is used
-                 d:\tpickell\documents\github\week2-ciss350\instadate\instadate\instadate.cpp(210) : definition of 'i' ignored
-                 d:\tpickell\documents\github\week2-ciss350\instadate\instadate\instadate.cpp(205) : definition of 'i' used
-     1>d:\tpickell\documents\github\week2-ciss350\instadate\instadate\instadate.cpp(256): warning C4258: 'i' : definition from the for loop is ignored; the definition from the enclosing scope is used
-                 d:\tpickell\documents\github\week2-ciss350\instadate\instadate\instadate.cpp(243) : definition of 'i' ignored
-                 d:\tpickell\documents\github\week2-ciss350\instadate\instadate\instadate.cpp(238) : definition of 'i' used
+     1>d:\tpickell\documents\github\week2-ciss350\instadate\instadate\instadate.cpp(228): warning C4258: 'i' : definition from the for loop is ignored; the definition from the enclosing scope is used
+                 d:\tpickell\documents\github\week2-ciss350\instadate\instadate\instadate.cpp(215) : definition of 'i' ignored
+                 d:\tpickell\documents\github\week2-ciss350\instadate\instadate\instadate.cpp(210) : definition of 'i' used
+     1>d:\tpickell\documents\github\week2-ciss350\instadate\instadate\instadate.cpp(261): warning C4258: 'i' : definition from the for loop is ignored; the definition from the enclosing scope is used
+                 d:\tpickell\documents\github\week2-ciss350\instadate\instadate\instadate.cpp(248) : definition of 'i' ignored
+                 d:\tpickell\documents\github\week2-ciss350\instadate\instadate\instadate.cpp(243) : definition of 'i' used
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\tpickell\Documents\GitHub\Week2-CISS350\InstaDate\Debug\InstaDate.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\tpickell\Documents\GitHub\Week2-CISS350\InstaDate\Debug\InstaDate.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\tpickell\Documents\GitHub\Week2-CISS350\InstaDate\Debug\InstaDate.lib" /MACHINE:X86 Debug\Client.obj
          Debug\fileHandler.obj
@@ -21,4 +21,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.63
+Time Elapsed 00:00:00.67

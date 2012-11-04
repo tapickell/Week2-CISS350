@@ -83,11 +83,14 @@ int Client::getNumInterest()
 std::vector<std::string>  Client::getListInterest()
 {
 	std::string workingStr;
-	//remove period at end of string
+	std::string charStr = ".";
 	workingStr.assign(listInterest, 0, listInterest.size() - 1);
+	//if name has period chop it else pass complete string
+	std::string pass = (listInterest[listInterest.size()-1] == charStr[0]) ? workingStr : listInterest;
+
 	//split strings up by commas && push substrings to stack
 	std::string theDelim = ",";
-	return split_by_token(workingStr, theDelim);
+	return split_by_token(pass, theDelim);
 }
 std::string Client::getMatch()
 {
@@ -107,7 +110,12 @@ void Client::setSex(char charIN)
 }
 void Client::setName(std::string strIN)
 {
-	name = strIN;
+	std::string chopped;
+	std::string charStr = ",";
+	chopped.assign(strIN, 0, strIN.size() - 1);
+	//std::cout << strIN << "[" << strIN.size() - 1 << "] => " << strIN[strIN.size() - 1] << "|  size:" << strIN.size() << std::endl;
+	//if name has comma chop it else pass complete string
+	name = (strIN[strIN.size()-1] == charStr[0]) ? chopped : strIN;
 }
 void Client::setPhone(std::string strIN)
 {
