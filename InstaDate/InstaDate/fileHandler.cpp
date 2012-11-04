@@ -73,19 +73,31 @@ vector<string> fileHandler::getFile()
 }
 
 
+/* this method outputs strings from a file
+	directly to cout. like cat in Unix/Linux	*/
+void fileHandler::catFile()
+{
+	vector<string> stringsOut = (*this).getFile();
+	for (size_t i = 0; i < stringsOut.size(); i++)
+	{
+		cout << stringsOut[i] << endl;
+	}
+}
+
+
 /* this method takes a vector<string> and then writes
 each string on a separate line out to the file*/
 void fileHandler::putFile(vector<string> &fileStrings)
 {
 	ofstream outFile;
 	outFile.open(theFileName); 
-	for (size_t i = 0; i < fileStrings.size(); i++) //removed -1 from fileStrings.size()
+	for (size_t i = 0; i < fileStrings.size()-1; i++) //to keep from adding extra \n to end of file -1 from fileStrings.size()
 	{
 		outFile << fileStrings[i] << "\n";
 		//cout << fileStrings[i] << endl;s
 	}
 	//to prevent from adding extra \n every time program runs
-	//outFile << fileStrings[fileStrings.size()-1];
+	outFile << fileStrings[fileStrings.size()-1];
 	outFile.close();
 }
 

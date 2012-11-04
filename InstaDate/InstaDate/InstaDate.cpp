@@ -48,6 +48,8 @@ void failout(string);
 // main  #######################################################################
 int _tmain(int argc, _TCHAR* argv[])
 {
+	spitout("###  Instadate Computer Dating System  ###");
+	cout << endl;
 	//create lists for clients
 	LinkedList males;
 	LinkedList females;
@@ -67,113 +69,181 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	// **** main loop ****
-	spitout("Instadate computer dating system");
 	bool done = false;
 	while (!done)
 	{
 		cout << endl;
-		spitout("Known commands:");
-		spitout("NEWCLIENT: Sex Name Phone #interests listOfInterests");
-		spitout("UNMATCH: Name");
-		spitout("PRINTMATCH");
-		spitout("PRINTFREE");
-		spitout("QUIT");
+		spitout("~ : NEWCLIENT : UNMATCH : PRINTMATCH : PRINTFREE : HELP : QUIT : ~");
+
 		string sexCharM = "M";
 		string sexCharF = "F";
 		string cinString;
 		//get input from user
 		cout << endl;
-		spitout("Enter a command: ");
+		spitout("command =>  ");
 		getline(cin, cinString);
 		//split string by spaces to vector
 		vector<string> vString = split_by_whitespace(cinString);
 		//cout << endl << vString[0] << endl;
 		//pass choice to switch
-		if (vString[0] == "NEWCLIENT")  /**** New Client Option ****/
+		if (vString[0] == "HELP")  /**** Main Help Display ****/
 		{
-			//create new client
-			vString.erase(vString.begin());//pop 1st entry out of vector to make createNewClient reusable elswhere
-			//cout << endl << vString[0] << endl;
-			createNewClient(vString, males, females);
+			//load and display help file
+			fileHandler helpFile("Help.pkl");
+			helpFile.catFile();
+
+		} else if (vString[0] == "NEWCLIENT")  /**** New Client Option ****/
+		{
+			if (vString.size() > 1 && vString[1] == "help")
+			{
+				cout << endl;
+				spitout("NEWCLIENT: Sex Name Phone #interests listOfInterests");
+				spitout("Used to enter a new client into the system.");
+			} else
+			{
+				//create new client
+				vString.erase(vString.begin());//pop 1st entry out of vector to make createNewClient reusable elswhere
+				//cout << endl << vString[0] << endl;
+				createNewClient(vString, males, females);
+			}
 
 		} else if (vString[0] == "UNMATCH")  /**** Unmatch Client Option ****/
 		{
-			//find client by name
+			if (vString.size() > 1 && vString[1] == "help")
+			{
+				cout << endl;
+				spitout("UNMATCH: Name");
+				spitout("Used to unmatch a matched couple.");
+			} else
+			{
+				//find client by name
+				try
+				{
+					int foundClient = findClientByName(vString[1], males);
+					bool manly = (foundClient < 0) ? false : true;
+					if (foundClient < 0)
+					{
+						foundClient = findClientByName(vString[1], females);
+						if (foundClient < 0)
+						{
+							throw ClientNotFoundError();
+						}
+					}
+					if (foundClient >= 0)
+					{
+						//unmatch client
+						if (manly)
+						{
+							//call unmatch passing males list
+							//cout << "Found Clent is male" << endl;
+							unmatchClient(foundClient, males, females);
+
+						} else if (!manly)
+						{
+							//call unmatch passing females list
+							unmatchClient(foundClient, females, males);
+
+						} else
+						{
+							//defualt if sex doesnt equal either M || F
+							throw PatError();
+						}
+					}
+				}
+				catch (ClientNotFoundError &e)
+				{
+					stringstream fail;
+					fail << "ERROR: " << e.what();
+					failout(fail.str());
+				}
+				catch (PatError &e)
+				{
+					stringstream fail;
+					fail << "ERROR: " << e.what();
+					failout(fail.str());
+				}
+			}
+
+		} else if (vString[0] == "PRINTMATCH")  /**** Print Matched Clients Option ****/
+		{
+			if (vString.size() > 1 && vString[1] == "help")
+			{
+				cout << endl;
+				spitout("Used to display a list of all matched clients with thier corresponding match.");
+			} else
+			{
+				cout << endl;
+				//print clients that are matched ( can do one or other doesnt matter )
+				grepListForMatched(true, males);
+			}
+
+		} else if (vString[0] == "PRINTFREE")  /**** Print Free Clients Option ****/
+		{
+			if (vString.size() > 1 && vString[1] == "help")
+			{
+				cout << endl;
+				spitout("Used to display all clients that are not matched.");
+			} else
+			{
+				cout << endl;
+				//print clients without matches
+				spitout("Free Clients:");
+				grepListForMatched(false, males);
+				grepListForMatched(false, females);
+			}
+
+		} else if (vString[0] == "QUIT")  /**** QUIT ****/
+		{
+			if (vString.size() > 1 && vString[1] == "help")
+			{
+				cout << endl;
+				spitout("Used to exit the program.");
+				spitout("Upon exit all changes to the clients lists are saved to file.");
+			} else
+			{
+				//exit program
+				done = true;
+			}
+
+		} else
+		{
+			//if user enters client name instead of command search for user name and spitout to_str() if found
 			try
 			{
-				int foundClient = findClientByName(vString[1], males);
+				int foundClient = findClientByName(vString[0], males);
 				bool manly = (foundClient < 0) ? false : true;
 				if (foundClient < 0)
 				{
-					foundClient = findClientByName(vString[1], females);
+					foundClient = findClientByName(vString[0], females);
 					if (foundClient < 0)
 					{
 						throw ClientNotFoundError();
 					}
 				}
-				if (foundClient >= 0)
-				{
-					//unmatch client
-					if (manly)
-					{
-						//call unmatch passing males list
-						//cout << "Found Clent is male" << endl;
-						unmatchClient(foundClient, males, females);
-
-					} else if (!manly)
-					{
-						//call unmatch passing females list
-						unmatchClient(foundClient, females, males);
-
-					} else
-					{
-						//defualt if sex doesnt equal either M || F
-						throw PatError();
-					}
-				}
+				spitout(manly ? males[foundClient].to_str() : females[foundClient].to_str());
 			}
 			catch (ClientNotFoundError &e)
 			{
-				stringstream fail;
-				fail << "ERROR: " << e.what();
-				failout(fail.str());
-			}
-			catch (PatError &e)
-			{
-				stringstream fail;
-				fail << "ERROR: " << e.what();
-				failout(fail.str());
+				//default
+				failout("!ERROR: Unknown Command!");
 			}
 			
-
-		} else if (vString[0] == "PRINTMATCH")  /**** Print Matched Clients Option ****/
-		{
-			//print clients that are matched ( can do one or other doesnt matter )
-			grepListForMatched(true, males);
-
-		} else if (vString[0] == "PRINTFREE")  /**** Print Free Clients Option ****/
-		{
-			//print clients without matches
-			spitout("Free Clients:");
-			grepListForMatched(false, males);
-			grepListForMatched(false, females);
-
-		} else if (vString[0] == "QUIT")  /**** QUIT ****/
-		{
-			//exit program
-			done = true;
-		} else
-		{
-			//default
-			failout("ERROR: Unknown Command!");
-
 		}//end if else (switch)
 	}//end main while loop
 
 	//add some persistance by writing lists back out to Clients file
 	//need lists into vector<string> to pass to putFile
-	//clientsFile.putFile();
+	vector<string> stringStack = males.toStack();
+	vector<string> ladyStack = females.toStack();
+	//converge lists into one
+	for (size_t i = 0; i < ladyStack.size(); i++)
+	{
+		stringStack.push_back(ladyStack[i]);
+	}
+	//send lists out to file
+	clientsFile.putFile(stringStack);
 
+	cout << endl;
 	spitout("Thank you for using InstaDate"); // exit message
 	system("pause");
 	return 0;
@@ -212,7 +282,7 @@ void createNewClient(vector<string> stringsIN, LinkedList &maleList, LinkedList 
 		catch (PatError &e)
 		{
 			stringstream fail;
-			fail << "ERROR: " << e.what();
+			fail << "!ERROR: " << e.what();
 			failout(fail.str());
 		}
 	} else //new client from prompt without match
@@ -254,7 +324,7 @@ void createNewClient(vector<string> stringsIN, LinkedList &maleList, LinkedList 
 					if (matches >= 3) break; // no need to check all if 3 matches found
 				}
 				//when finished with list if still no matches found the spitout msg
-				if (newClient.getMatch() == " ") spitout("No matches found for new client"); 
+				if (newClient.getMatch() == " ") spitout("~No matches found for new client~"); 
 
 				//add client to appropriate list
 				maleList += newClient;
@@ -291,7 +361,7 @@ void createNewClient(vector<string> stringsIN, LinkedList &maleList, LinkedList 
 					if (matches >= 3) break; // no need to check all if 3 matches found
 				}
 				//when finished with list if still no matches found the spitout msg
-				if (newClient.getMatch() == " ") spitout("No matches found for new client"); 
+				if (newClient.getMatch() == " ") spitout("~No matches found for new client~"); 
 
 				//add client to appropriate list
 				femaleList += newClient;
@@ -304,7 +374,7 @@ void createNewClient(vector<string> stringsIN, LinkedList &maleList, LinkedList 
 		catch (PatError &e)
 		{
 			stringstream fail;
-			fail << "ERROR: " << e.what();
+			fail << "!ERROR: " << e.what();
 			failout(fail.str());
 		}
 	}
@@ -327,7 +397,7 @@ void unmatchClient(int clientIN, LinkedList &list1, LinkedList &list2)
 		
 		if (list2[matchedClient].getName() != "NOTFOUND")
 		{
-			spitout("clearing matches on both clients!");
+			spitout("~clearing matches on both clients~");
 			//clear matches for both clients
 			Client Bob = list1[clientIN];
 			Client Barb = list2[matchedClient];
@@ -338,10 +408,10 @@ void unmatchClient(int clientIN, LinkedList &list1, LinkedList &list2)
 			list1 += Bob;
 			list2 += Barb; 
 		} else {
-			failout("ERROR: Matched client not found!");
+			failout("!ERROR: Matched client not found!");
 		}
 	} else {
-		failout("ERROR: Client is not matched!");
+		failout("!ERROR: Client is not matched!");
 	}
 }
 
@@ -361,7 +431,7 @@ int findClientByName(string nameIn, LinkedList &theList) //need to rework to sea
 	{
 		if (theList[i].getName() == nameIn) // if found return Client object index
 		{
-			failout("Name Match Found");
+			failout("~Name Match Found~");
 			found = i;
 			isFound = true;
 		}
@@ -369,7 +439,7 @@ int findClientByName(string nameIn, LinkedList &theList) //need to rework to sea
 	if (!isFound) //if not found kickout error
 	{
 		found = -1;
-		failout("ERROR: Client Not Found!");
+		failout("!ERROR: Client Not Found!");
 	}
 	return found;
 }

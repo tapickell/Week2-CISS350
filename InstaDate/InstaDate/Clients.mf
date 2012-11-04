@@ -1,6 +1,12 @@
-M Bob, 555-1212 5 hunting,mudding,camping,fishing,drinking. Barb
-F Barb, 555-1313 3 camping,fishing,drinking. Bob
-M Tom, 555-1414 4 reading,writing,math,science. Susan
-F Susan, 555-1515 5 reading,writing,science,astronomy,physics. Tom
-F JoAnn, 555-1616 3 cheerleading,makeup,football. Mike
-M Mike, 555-1717 5 cheerleading,football,drinking,motorcycles. JoAnn
+M Tom 555-1414 4 reading,writing,math,science. Susan
+M Mike 555-1717 5 cheerleading,football,drinking,motorcycles. JoAnn
+M Ralph 555-1234 4 SafariHats,brussleSprouts,camping,beer.  
+M JimBob 555-3456 4 bowling,darts,spooning,beer. Marsha
+M Bob 555-1212 5 hunting,mudding,camping,fishing,drinking.  
+M Johhny 555-1982 4 literature,poetry,scientology,camping.  
+M Fabio 555-6789 3 shopping,photography,romanceNovels.  
+F Susan 555-1515 5 reading,writing,science,astronomy,physics. Tom
+F JoAnn 555-1616 3 cheerleading,makeup,football. Mike
+F Marsha 555-8765 3 bowling,darts,spooning. JimBob
+F Barb 555-1313 3 camping,fishing,drinking.  
+F LadyGaga 555-6969 4 singing,art,dancing,fashion.  

@@ -33,6 +33,10 @@ public:
 	contains one string for each line in the file */
 	std::vector<std::string> getFile();
 
+	/* this method outputs strings from a file
+	   directly to cout. like cat in Unix/Linux	*/
+	void catFile();
+
 	/* this method takes a vector<string> and then writes
 	each string on a separate line out to the file*/
 	void putFile(std::vector<std::string> &);

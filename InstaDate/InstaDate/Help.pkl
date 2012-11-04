@@ -1,0 +1,20 @@
+
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  |                                                                 |
+  |  Welcome to the main help system.                               |
+  |                                                                 |
+  |  The known commands are:                                        |
+  | : NEWCLIENT : UNMATCH : PRINTMATCH : PRINTFREE : HELP : QUIT :  |
+  |                                                                 |
+  |  These can be entered from the prompt.                          |
+  |                                                                 |
+  |  If you would like more information about a command type:       |
+  |  "COMMAND help"                                                 |
+  |  like this:   NEWCLIENT help  <enter>                           |
+  |                                                                 |
+  |  You can also type a clients name into the prompt for           |
+  |  more information about that client.                            |
+  |  like this: Bob  <enter>                                        |
+  |                                                                 |
+  |                                                                 |
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
