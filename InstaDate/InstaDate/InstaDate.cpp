@@ -141,6 +141,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		} else if (vString[0] == "PRINTFREE")  /**** Print Free Clients Option ****/
 		{
 			//print clients without matches
+			cout <<  endl << "Free Clients:" << endl;
 			grepListForMatched(false, males);
 			grepListForMatched(false, females);
 
@@ -181,11 +182,11 @@ void createNewClient(vector<string> stringsIN, LinkedList &maleList, LinkedList 
 			Client newClientWithMatch = Client(strChar[0], stringsIN[1], stringsIN[2], atoi(stringsIN[3].c_str()), stringsIN[4], stringsIN[5]);
 			if (newClientWithMatch.getSex() == sexCharM[0])// new client is male
 			{
-				maleList+= newClientWithMatch;
+				maleList += newClientWithMatch;
 
 			} else if (newClientWithMatch.getSex() == sexCharF[0])// new client is female
 			{
-				femaleList+= newClientWithMatch;
+				femaleList += newClientWithMatch;
 
 			} else
 			{
@@ -198,7 +199,7 @@ void createNewClient(vector<string> stringsIN, LinkedList &maleList, LinkedList 
 		}
 	} else //new client from prompt without match
 	{
-		Client newClient = Client(strChar[0], stringsIN[1], stringsIN[2], atoi(stringsIN[3].c_str()), stringsIN[4]); //got subscript out of range
+		Client newClient = Client(strChar[0], stringsIN[1], stringsIN[2], atoi(stringsIN[3].c_str()), stringsIN[4]); //got subscript out of range FIXED!
 		//check for match with opposite sex list
 		vector<string> clientInterests = newClient.getListInterest();
 		try
@@ -225,7 +226,9 @@ void createNewClient(vector<string> stringsIN, LinkedList &maleList, LinkedList 
 					{
 						// if 3 or more interests match set as each others matches
 						newClient.setMatch(nextOne.getName());
-						femaleList.getAt(i).setMatch(newClient.getName()); //needs to be matched client from original list passed in 
+						nextOne.setMatch(newClient.getName()); //needs to be matched client from original list passed in 
+						femaleList.removeAt(i);
+						femaleList += nextOne;
 						cout << endl << newClient.getName() << " : " << newClient.getPhone() << " => " << nextOne.getName() << " : " << nextOne.getPhone() << endl;
 					}// if not a match move onto next on list
 					if (matches >= 3) break; // no need to check all if 3 matches found
@@ -258,7 +261,9 @@ void createNewClient(vector<string> stringsIN, LinkedList &maleList, LinkedList 
 					{
 						// if 3 or more interests match set as each others matches
 						newClient.setMatch(nextOne.getName());
-						maleList.getAt(i).setMatch(newClient.getName()); //needs to be matched client from original list passed in 
+						nextOne.setMatch(newClient.getName()); //needs to be matched client from original list passed in 
+						maleList.removeAt(i);
+						maleList += nextOne;
 						cout << endl << newClient.getName() << " : " << newClient.getPhone() << " => " << nextOne.getName() << " : " << nextOne.getPhone() << endl;
 					}// if not a match move onto next on list
 					if (matches >= 3) break; // no need to check all if 3 matches found
@@ -330,7 +335,7 @@ int findClientByName(string nameIn, LinkedList &theList) //need to rework to sea
 	//traverse list loooking for client by name
 	for (int i = 0; i < theList.count(); i++)
 	{
-		if (theList[i].getName() == nameIn) // if found return Client object
+		if (theList[i].getName() == nameIn) // if found return Client object index
 		{
 			cout << endl << "Name Match Found" << endl;
 			found = i;
@@ -376,8 +381,14 @@ void grepListForMatched(bool matched, LinkedList &theList)
 	}
 	//cout << "newList" << endl;
 	//newList.to_str();
-	cout << endl << ( matched ? "Matched Pairs:" : "Free Clients:" ) << endl;
+	if (matched) cout << endl << "Matched Pairs:" << endl;
+
 	matched ? newList.to_str_matched() : newList.to_str_free();
+}
+
+void doNothing()
+{
+	//doNothing
 }
 
 
