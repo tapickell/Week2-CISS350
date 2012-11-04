@@ -51,9 +51,9 @@ public:
 	void setMatch(std::string);
 
 	/* instance methods */
-	void to_str();
-	void to_str_matched();
-	void to_str_free();
+	std::string to_str();
+	std::string to_str_matched();
+	std::string to_str_free();
 	bool matched();
 	RelationType ComparedTo(Client) const;
 	std::vector<std::string> split_by_token(std::string, std::string);

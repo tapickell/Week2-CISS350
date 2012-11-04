@@ -37,6 +37,10 @@ public:
 	each string on a separate line out to the file*/
 	void putFile(std::vector<std::string> &);
 
+	/* this method takes a vector<string> and then appends
+	each string on a separate line to the end of the file*/
+	void appendFile(std::vector<std::string> &fileStrings);
+
 private:
 	std::string theFileName;
 };

@@ -78,6 +78,22 @@ each string on a separate line out to the file*/
 void fileHandler::putFile(vector<string> &fileStrings)
 {
 	ofstream outFile;
+	outFile.open(theFileName); 
+	for (size_t i = 0; i < fileStrings.size(); i++) //removed -1 from fileStrings.size()
+	{
+		outFile << fileStrings[i] << "\n";
+		//cout << fileStrings[i] << endl;s
+	}
+	//to prevent from adding extra \n every time program runs
+	//outFile << fileStrings[fileStrings.size()-1];
+	outFile.close();
+}
+
+/* this method takes a vector<string> and then appends
+each string on a separate line to the end of the file*/
+void fileHandler::appendFile(vector<string> &fileStrings)
+{
+	ofstream outFile;
 	outFile.open(theFileName, ofstream::app); //add opening in append mode
 	for (size_t i = 0; i < fileStrings.size(); i++) //removed -1 from fileStrings.size()
 	{

@@ -142,10 +142,11 @@ void Client::setMatch(std::string strIN)
 	pre:
 	post:
 */
-void Client::to_str()
+std::string Client::to_str()
 {
-	//std::stringstream ss; //not working??? nevermind just cout =>
-	std::cout << std::endl << getSex() << " " << getName() << " " << getPhone() << " " << getNumInterest() << " " << getStringInterest() << " " << getMatch() << std::endl; 
+	std::stringstream ss; //not working??? nevermind just cout =>
+	ss << getSex() << " " << getName() << " " << getPhone() << " " << getNumInterest() << " " << getStringInterest() << " " << getMatch(); 
+	return ss.str();
 }
 
 /*
@@ -153,10 +154,11 @@ void Client::to_str()
 	pre:
 	post:
 */
-void Client::to_str_matched()
+std::string Client::to_str_matched()
 {
-	//stringstream ss; not working??? nevermind just cout =>
-	std::cout << getName() << " => " << getMatch() << std::endl;
+	std::stringstream ss; //not working??? nevermind just cout =>
+	ss << getName() << " => " << getMatch();
+	return ss.str();
 }
 
 /*
@@ -164,10 +166,11 @@ void Client::to_str_matched()
 	pre:
 	post:
 */
-void Client::to_str_free()
+std::string Client::to_str_free()
 {
-	//stringstream ss; not working??? nevermind just cout =>
-	std::cout << getName() << " : " << getPhone() << std::endl;  
+	std::stringstream ss; //not working??? nevermind just cout =>
+	ss << getName() << " : " << getPhone();  
+	return ss.str();
 }
 
 /*

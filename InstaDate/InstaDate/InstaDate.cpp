@@ -170,6 +170,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		}//end if else (switch)
 	}//end main while loop
 
+	//add some persistance by writing lists back out to Clients file
+	//need lists into vector<string> to pass to putFile
+	//clientsFile.putFile();
 
 	spitout("Thank you for using InstaDate"); // exit message
 	system("pause");
@@ -403,12 +406,11 @@ void grepListForMatched(bool matched, LinkedList &theList)
 	//newList.to_str();
 	if (matched) spitout("Matched Pairs:");
 
-	matched ? newList.to_str_matched() : newList.to_str_free();
-}
-
-void doNothing()
-{
-	//doNothing
+	vector<string> listOutput = matched ? newList.to_str_matched() : newList.to_str_free();
+	for (size_t i = 0; i < listOutput.size(); i++)
+	{
+		spitout(listOutput[i]);
+	}
 }
 
 
@@ -494,14 +496,20 @@ void spitout(string strIN)
 	fileHandler spitFile("Dates.out");
 	vector<string> output;
 	output.push_back(strIN);
-	spitFile.putFile(output);
+	spitFile.appendFile(output);
 }
 
+/* #####################################################
+	function:
+	pre:
+	post:
+*/
+//failout() method that outputs strings to cerr and to fileHandler
 void failout(string strIN)
 {
 	cerr << strIN << endl;
 	fileHandler spitFile("Dates.out");
 	vector<string> output;
 	output.push_back(strIN);
-	spitFile.putFile(output);
+	spitFile.appendFile(output);
 }

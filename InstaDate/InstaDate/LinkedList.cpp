@@ -128,28 +128,44 @@ void LinkedList::clear()
 	head = NULL;
 }
 
-void LinkedList::to_str()
+std::vector<std::string> LinkedList::to_str()
 {
+	std::vector<std::string> temp;
 	for (int i = 0; i < (*this).count(); i++)
 	{
-		(*this)[i].to_str();
+		temp.push_back((*this)[i].to_str());
 	}
+	return temp;
 }
 
-void LinkedList::to_str_matched()
+std::vector<std::string> LinkedList::to_str_matched()
 {
+	std::vector<std::string> temp;
 	for (int i = 0; i < (*this).count(); i++)
 	{
-		(*this)[i].to_str_matched();
+		temp.push_back((*this)[i].to_str_matched());
 	}
+	return temp;
 }
 
-void LinkedList::to_str_free()
+std::vector<std::string> LinkedList::to_str_free()
 {
+	std::vector<std::string> temp;
 	for (int i = 0; i < (*this).count(); i++)
 	{
-		(*this)[i].to_str_free();
+		temp.push_back((*this)[i].to_str_free());
 	}
+	return temp;
+}
+
+std::vector<std::string> LinkedList::toStack()
+{
+	std::vector<std::string> temp;
+	for (int i = 0; i < (*this).count(); i++)
+	{
+		temp.push_back((*this)[i].to_str());
+	}
+	return temp;
 }
 
 Client LinkedList::operator[] (int index)

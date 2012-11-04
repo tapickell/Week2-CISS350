@@ -14,9 +14,10 @@ public:
     void clear();
     Client operator [] (int);
 	int operator += (Client);
-	void to_str();
-	void to_str_matched();
-	void to_str_free();
+	std::vector<std::string> to_str();
+	std::vector<std::string> to_str_matched();
+	std::vector<std::string> to_str_free();
+	std::vector<std::string> toStack();
 
 private:
     int _count;
